@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 	<title>Angular Tasks</title>
 	<link href="css/style.css" type="text/css" rel="stylesheet">
 	<link href="css/media-queries.css" type="text/css" rel="stylesheet">
@@ -12,11 +13,20 @@
 <body>
 	<div id="container" ng-app="loginApp">
 		
-		<nav class="links-nav">
+		<nav class="links-nav" ng-controller="MainController">
 			<ul class="links-nav-ul">
-				<li class="links-nav-li"><a href="#/login">Login</a></li>
-				<li class="links-nav-li"><a href="#/register">Register</a></li>
-				<li class="links-nav-li"><a href="#/password">Retrieve Password</a></li>
+				<li ng-show="loggedOut" class="links-nav-li"><a href="#/login">Login</a></li>
+				<li ng-show="loggedOut" ng-click="reg()" class="links-nav-li"><a href="#/register">Register</a></li>
+				<li ng-show="loggedIn" class="links-nav-li"><a href="#/welcome">The Team</a></li>
+				<li ng-show="loggedIn" class="links-nav-li"><a href="">{{ welcome.fname }} {{ welcome.sname }} &#x25BE</a>
+					<ul id="links-nav-li-drop">
+						<li ng-show="loggedIn" ng-click="userProfile()" class="links-nav-li"><a href="#/profile">{{ welcome.fname }}'s Profile</a></li
+						><li ng-show="loggedIn" class="links-nav-li"><a href="#/settings">Account Settings</a></li
+						><li ng-show="loggedIn" class="links-nav-li"><a href="#/edit">Edit Profile</a></li
+						>
+						<li ng-show="loggedIn" ng-click="logOut()" class="links-nav-li"><a href="#/login">Logout</a></li>
+					</ul>
+				</li>
 			</ul>
 		</nav>
 		
@@ -26,6 +36,7 @@
 	
 	<script src="js/libs/angular.js"></script>
 	<script src="js/libs/angular-route.js"></script>
+	<script src="js/libs/angular-resource.js"></script>
 	<script src="js/controllers.js"></script>
 	<script src="js/config.js"></script>
 	<script src="js/factories.js"></script>

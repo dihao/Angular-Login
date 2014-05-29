@@ -12,12 +12,32 @@
 		width: 100%;
 	}
 	
+	#password-link{
+		margin-top: 16px;
+	}
+	
 	.button{
 		width: 100%;
 	}
 	
 	.current-members-li{
 		width: 50%;
+	}
+
+	#profile-left-container{
+		display: block;
+		width: 100%;
+	}
+
+	.profile-right-container{
+		display: block;
+		width: 100%;
+	}
+	
+
+	.right-container-boxes{
+		padding: 16px 0 0 0;
+		width: 100%;
 	}
 }
 
@@ -29,12 +49,28 @@
 		width: 75%;
 	}
 	
+	#password-link{
+		margin-top: 16px;
+	}
+	
 	.button{
 		width: 100%;
 	}
 	
 	.current-members-li{
 		width: 33.33%;
+	}
+
+	#profile-left-container{
+		width: 100%;
+	}
+
+	.profile-right-container{
+		width: 100%;
+	}
+
+	.right-container-boxes{
+		padding: 16px 16px 0 0;
 	}
 }
 
@@ -47,7 +83,15 @@
 	}
 	
 	.current-members-li{
-		width: 25%;
+		width: 20%;
+	}
+
+	#profile-left-container{
+		width: 40%;
+	}
+
+	.profile-right-container{
+		width: 60%;
 	}
 }
 

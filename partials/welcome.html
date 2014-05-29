@@ -1,4 +1,4 @@
-<section class="ng-view-section">
+<section ng-show="showPage" class="ng-view-section">
 
 	<h1>Meet The Team</h1>
 
@@ -9,13 +9,15 @@
 		</ul>
 	</nav>
 	
-	<input class="form-input" type="text" name="searchMembers" placeholder="Type to filter members" ng-model="search.members" ng-minlength=2 ng-maxlength=20>
+	<input class="form-input" type="text" name="searchMembers" placeholder="Type to filter members" ng-model="search.members.name" ng-minlength=2 ng-maxlength=20>
+	
 
 	<ul class="current-members-ul">
-		<li class="current-members-li" ng-repeat="member in members | filter:search.members | orderBy:sortField:reverse">
-			<img ng-src="{{ member.imgURL }}" width="200"/>
-			<h3>{{ member.username }}</h3>
-			<h3>{{ member.type }}</h3>
+		<li class="current-members-li" ng-repeat="member in members | filter:search.members.name | orderBy:sortField:reverse">
+			<a href="#/profile" ng-click="clickedMember(member)">
+				<img ng-src="{{ member.imgURL }}" width="200"/>
+				<h3>{{ member.username }}</h3>
+			</a>
 		</li>
 	</ul>
 
