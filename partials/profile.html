@@ -1,57 +1,38 @@
-<section ng-show="showPage" class="ng-view-section">
+<section class="ng-view-section">
 
-	<h1>{{ chosen.fname }}</h1>
+	<h1 class="center-text">{{ chosen.fname }}</h1>
 	
-	<article class="row">
-		<section id="profile-left-container">
+	<article class="profile-container">
+		<section class="profile-left-container center-text">
 			<img ng-src="{{ chosen.imgURL }}" width="120" height="120"/>
-			<div class="profile-left-text">
-				<h2> {{ chosen.fname }} {{ chosen.sname }} </h2>
+			<div class="profile-left-inner-row">
+				{{ chosen.fname }} {{ chosen.sname }}
 			</div>
-			<div class="profile-left-text">
-				<button id="add-like" ng-click="addLike()"> Like </button>
-			</div>
-			<div class="profile-left-text">
-				<div id="heart"></div>
-				<h3> {{ chosen.likes }} </h3>
+			<div class="profile-left-inner-row">
+				<button class="add-like" ng-click="addLike()"> Like </button>
 			</div>
 		</section
 		><section class="profile-right-container">
 			<div class="right-container-boxes">
 				<div class="right-container-boxes-inner">
-					<div class="profile-right-text">
-						<h2> Username:</h2
-						><h3> {{ chosen.username }} </h3>
-					</div>
-					<div class="profile-right-text">
-						<h2> Email:</h2
-						><h3> {{ chosen.email }} </h3>
-					</div>
-					<div class="profile-right-text">
-						<h2> Website:</h2
-						><h3> {{ chosen.web }} </h3>
-					</div>
+					<div class="profile-right-inner-row">{{ chosen.username }}</div>
+					<div class="profile-right-inner-row">{{ chosen.email }}</div>
+					<div class="profile-right-inner-row">{{ chosen.web }}</div>
 				</div>
 			</div
 			><div class="right-container-boxes">
 				<div class="right-container-boxes-inner">
-					<div class="likes">
-						<h3>{{ chosen.likes }}</h3>
-					</div>
+					<div class="likes center-text">{{ chosen.likes }}</div>
 				</div>
 			</div
 			><div class="right-container-boxes">
 				<div class="right-container-boxes-inner">
-					<div class="likes">
-						<h3>{{ chosen.likes }}</h3>
-					</div>
+					<div class="likes center-text">{{ chosen.likes }}</div>
 				</div>
 			</div
 			><div class="right-container-boxes">
 				<div class="right-container-boxes-inner">
-					<div class="likes">
-						<h3>{{ chosen.likes }}</h3>
-					</div>
+					<div class="likes center-text">{{ chosen.likes }}</div>
 				</div>
 			</div>
 		</section>

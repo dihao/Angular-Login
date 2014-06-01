@@ -5,7 +5,7 @@ var loginApp = angular.module('loginApp', ['ngResource', 'ConfigModule']);
 // === MAIN CONTROLLER === //
 loginApp.controller('MainController', function($scope, loggedInFactory, UserFactory, profileFactory){
 	
-	$scope.$watch(loggedInFactory.getLoginStatus, function () {
+	$scope.$watch(loggedInFactory.getLoginStatus, function() {
 		$scope.loggedIn = loggedInFactory.getLoginStatus();	
 		if (!$scope.loggedIn) {
 			$scope.loggedOut = true;
@@ -14,7 +14,7 @@ loginApp.controller('MainController', function($scope, loggedInFactory, UserFact
 		};
 	});
 	
-	$scope.$watch(UserFactory.getUser, function () {
+	$scope.$watch(UserFactory.getUser, function() {
 		$scope.welcome = UserFactory.getUser();		
 	});
 	
@@ -33,12 +33,14 @@ loginApp.controller('MainController', function($scope, loggedInFactory, UserFact
 
 // === LOGIN CONTROLLER === //
 loginApp.controller('LoginController', function($scope, $location, memberFactory, loggedInFactory, UserFactory){
-
-	// Populating $scope.members with the members arrays from memberFactory.
-	$scope.members = memberFactory.getMembers();
+	
+	memberFactory.getMembers().success(function(data){
+	    $scope.members = data;
+	});
 	
 	// Setting the login form submit value to false, will be set to true if the form is invalid on submit
 	$scope.submitted = false;
+	$scope.loginError = false;
 
 	// The function that is called when the login form is submitted.
 	$scope.loginSubmit = function(){
@@ -50,19 +52,20 @@ loginApp.controller('LoginController', function($scope, $location, memberFactory
 				if ($scope.members[i].username == $scope.login.username && $scope.members[i].password == $scope.login.password){
 					loggedInFactory.setLoginStatus(true);
 					UserFactory.setUser($scope.members[i]);
+					$scope.loginError = true;
 					$location.path("/welcome");
 					break;
 				}
-				$scope.loginError = true;
-			};			
-			if($scope.loginError){
-				// If the details do not have a match set $scope.loginError an error message to display to the view.
-					$scope.loginErrorMessage = "Login details are invalid";
 			};
 		// Setting the login form submit value to true, for displaying the ng-show error messages.
 		}else{
 			$scope.login_form.submitted = true;
-		}		
+		}
+						
+		if(!$scope.loginError && $scope.login_form.$valid){
+			// If the details do not have a match set $scope.loginError an error message to display to the view.
+			$scope.loginErrorMessage = "Login details are incorrect. Try again.";
+		};	
 	};
 
 });
@@ -73,8 +76,9 @@ loginApp.controller('LoginController', function($scope, $location, memberFactory
 // === WELCOME CONTROLLER === //
 loginApp.controller('WelcomeController', function($scope, memberFactory, profileFactory, loggedInFactory){
 	
-	// Populating $scope.members with the members arrays from memberFactory.
-	$scope.members = memberFactory.getMembers();
+	memberFactory.getMembers().success(function(data){
+	    $scope.members = data;
+	});
 
 	// Populating $scope.showList with true or false value from loggedInFactory, to show current members list
 	$scope.showPage = loggedInFactory.getLoginStatus();
@@ -98,8 +102,9 @@ loginApp.controller('WelcomeController', function($scope, memberFactory, profile
 // === PROFILE CONTROLLER === //
 loginApp.controller('ProfileController', function($scope, memberFactory, profileFactory, loggedInFactory){
 
-	// Populating $scope.members with the members arrays from memberFactory.
-	$scope.members = memberFactory.getMembers();
+	memberFactory.getMembers().success(function(data){
+	    $scope.members = data;
+	});
 
 	// Populating $scope.showList with true or false value from loggedInFactory, to show current members list
 	$scope.showPage = loggedInFactory.getLoginStatus();
@@ -128,9 +133,13 @@ loginApp.controller('SettingsController', function($scope, loggedInFactory, User
 	$scope.showPage = loggedInFactory.getLoginStatus();
 	
 	$scope.settingsEmail = function(){
-		if($scope.email_form.$valid){
-			$scope.user.email = $scope.change.mail;
-			$scope.successEmailChange = 'Your Email has been changed';
+		if($scope.email_form.$valid){			
+			if($scope.user.email != $scope.change.mail){
+				$scope.user.email = $scope.change.mail;
+				$scope.successEmailChange = 'Your Email has been changed';
+			}else{
+				$scope.sameEmailError = 'That is the email you are currently using';
+			}
 		}else{
 			$scope.email_form.submitted = true;
 		}
@@ -176,11 +185,15 @@ loginApp.controller('EditController', function($scope, loggedInFactory, UserFact
 			if($scope.user.fname != $scope.edit.fnam){
 				$scope.user.fname = $scope.edit.fnam
 				$scope.successFnameChange = 'Your First name has been changed';
-			}
+			}else{
+				$scope.sameFnameError = 'That is the First name you currently use';
+			};
 			if($scope.user.sname != $scope.edit.snam){
 				$scope.user.sname = $scope.edit.snam
 				$scope.successSnameChange = 'Your Surname name has been changed';
-			}
+			}else{
+				$scope.sameSnameError = 'That is the Surname you currently use';
+			};
 		}else{
 			$scope.name_form.submitted = true;
 		}
@@ -191,7 +204,9 @@ loginApp.controller('EditController', function($scope, loggedInFactory, UserFact
 			if($scope.user.username != $scope.edit.uname){
 				$scope.user.username = $scope.edit.uname
 				$scope.successUnameChange = 'Your Username has been changed';
-			}
+			}else{
+				$scope.sameUnameError = 'That is the Username you currently use';
+			};
 		}else{
 			$scope.username_form.submitted = true;
 		}
@@ -202,7 +217,9 @@ loginApp.controller('EditController', function($scope, loggedInFactory, UserFact
 			if($scope.user.web != $scope.edit.website){
 				$scope.user.web = $scope.edit.website
 				$scope.successWebsiteChange = 'Your Website has been changed';
-			}
+			}else{
+				$scope.sameWebsiteError = 'That is the Website you currently have set';
+			};
 		}else{
 			$scope.website_form.submitted = true;
 		}
@@ -216,11 +233,13 @@ loginApp.controller('EditController', function($scope, loggedInFactory, UserFact
 // === REGISTER CONTROLLER === //
 loginApp.controller('RegisterController', function($scope, $location, memberFactory, loggedInFactory){
 
-	// Populating $scope.members with the members arrays from memberFactory.
-	$scope.members = memberFactory.getMembers();
+	memberFactory.getMembers().success(function(data){
+	    $scope.members = data;
+	});
 
 	// Populating $scope.showList with true or false value from loggedInFactory, to show current members list
 	$scope.showPage = loggedInFactory.getLoginStatus();
+	
 	
 	// Setting the login form submit value to false, will be set to true if the form is invalid on submit
 	// if set to true it will allow the ng-show error messages to be displayed.
@@ -228,6 +247,7 @@ loginApp.controller('RegisterController', function($scope, $location, memberFact
 
 	// The function that is called when the register form is submitted.
 	$scope.registerSubmit = function(){
+	$scope.registrationErrorMessage = false;
 		// Checking if the register form is valid (enough characters, correct type etc).
 		if($scope.register_form.$valid){
 			// If register form is valid, loop through $scope.members to see if the username entered already exists.
@@ -247,6 +267,8 @@ loginApp.controller('RegisterController', function($scope, $location, memberFact
 
 		// If $scope.registrationError is false and the register form is valid 
 		if (!$scope.registrationError && $scope.register_form.$valid){
+		
+			$scope.registrationSuccessMessage = "Your account was created successfully";
 			// push the registration details to $scope.members and set the location of the view to /login
 			$scope.members.push(
 				{
@@ -259,7 +281,6 @@ loginApp.controller('RegisterController', function($scope, $location, memberFact
 					password:$scope.register.password
 				}
 			);
-			$location.path("/login");
 		}
 	};
 
@@ -270,53 +291,38 @@ loginApp.controller('RegisterController', function($scope, $location, memberFact
 
 // === PASSWORD CONTROLLER === //
 loginApp.controller('PasswordController',function($scope, memberFactory){
-
-	// Populating $scope.members with the members arrays from memberFactory.
-	$scope.members = memberFactory.getMembers();
+	
+	// getting the current members from the memberFactory's http request and putting them inside $scope.members.
+	memberFactory.getMembers().success(function(data){
+	    $scope.members = data;
+	});
 	
 	// $scope.passwordRetrieve will be assigned the users's password if the details they provide are correct.
 	$scope.passwordRetrieve = "Forgot Password";
+	$scope.passwordAuth = false;
 	
-	// The function that is called when the password form is submitted.
+	// The function that is called when the reset password_form has been submitted.
 	$scope.passwordSubmit = function(){
-		// Checking if the password form is valid (enough characters, correct type etc).
+		// If register form is valid, loop through $scope.members to see if the username and email have a match.
 		if($scope.password_form.$valid){
-			// If register form is valid, loop through $scope.members to see if the username and email entered have a match.
 			for (var i=0; i<$scope.members.length; i++) {
-				// If the username and email entered do have a match set $scope.passwordRetrieve to the relevant password 
-				// and assign $scope.passwordAuth to true.
+			// If the username and email entered do have a match set $scope.passwordRetrieve and $scope.passwordAuth.
 				if ($scope.members[i].username == $scope.password.username && $scope.members[i].email == $scope.password.email) {
-					$scope.passwordRetrieve = "Your Password Is: " + $scope.members[i].password;
 					$scope.passwordAuth = true;
+					$scope.passwordRetrieve = "Your Password Is: " + $scope.members[i].password;
 					break;
-				};
-			};
-		}
-		// Setting the password form submit value to true, allows for the ng-show error messages to be displayed.
-		else{
+				}
+			}
+		}else{
 			$scope.password_form.submitted = true;
-		};
+		}
 
-		// Setting $scope.passwordError is false and the password form is valid 
-		// set $scope.passwordErrorMessage an error message to display to the view.
+		// If $scope.passwordAuth is false and the password_form is valid set $scope.passwordErrorMessage.
 		if (!$scope.passwordAuth && $scope.password_form.$valid){
 			$scope.passwordErrorMessage = "Those details don't match any we have";
-		};
-	}
+		}
+		
+		
+	};
 	
 });
-
-
-
-
-/*
-loginApp.run(function ($rootScope, $location, loggedInFactory) {
-    
-    $rootScope.$on('$routeChangeStart', function () {
-        if (!loggedInFactory.getLoginStatus()) {
-            $location.path('/login');
-        };
-	});
-	
-});
-*/

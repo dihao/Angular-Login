@@ -1,27 +1,29 @@
 <section ng-show="showPage" class="ng-view-section">
 
-	<h1>Edit Profile</h1>
+	<h1 class="center-text">Edit Profile</h1>
 	
 	
 	<!-- CHANGE NAME FORM -->
 	<form class="forms left-align-form" name="name_form" novalidate ng-submit="editName()">
 								
-		<h2 class="bind-text">{{ successFnameChange }}</h2>
+		<small class="success-messages" ng-show="successFnameChange">&#x2713 {{ successFnameChange }}</small>
+		<small class="error-messages" ng-show="sameFnameError">&#x2718 {{ sameFnameError }}</small>
 		<input class="form-input" type="text" name="fnam" placeholder="{{user.fname}}" required autocomplete="off" ng-model="edit.fnam" ng-minlength=2 ng-maxlength=20 ng-pattern="/^[a-zA-Z]+$/">
 			<div class="error-messages" ng-show="name_form.fnam.$dirty && name_form.fnam.$invalid && name_form.submitted">
-				<small ng-show="name_form.fnam.$error.required">A first name is required</small>
-				<small ng-show="name_form.fnam.$error.minlength">The first name min character length is 2</small>
-				<small ng-show="name_form.fnam.$error.maxlength">The first name max character length is 20</small>
-				<small ng-show="name_form.fnam.$error.pattern">Use only A-Za-z characters</small>
+				<small ng-show="name_form.fnam.$error.required">&#x2718 A first name is required</small>
+				<small ng-show="name_form.fnam.$error.minlength">&#x2718 The first name min character length is 2</small>
+				<small ng-show="name_form.fnam.$error.maxlength">&#x2718 The first name max character length is 20</small>
+				<small ng-show="name_form.fnam.$error.pattern">&#x2718 Use only A-Za-z characters</small>
 			</div>
 			
-		<h2 class="bind-text">{{ successSnameChange }}</h2>
+		<small class="success-messages" ng-show="successSnameChange">&#x2713 {{ successSnameChange }}</small>
+		<small class="error-messages" ng-show="sameSnameError">&#x2718 {{ sameSnameError }}</small>
 		<input class="form-input" type="text" name="snam" placeholder="{{user.sname}}" required autocomplete="off" ng-model="edit.snam" ng-minlength=2 ng-maxlength=20 ng-pattern="/^[a-zA-Z]+$/">
 			<div class="error-messages" ng-show="name_form.snam.$dirty && name_form.snam.$invalid && name_form.submitted">
-				<small ng-show="name_form.snam.$error.required">A surname is required</small>
-				<small ng-show="name_form.snam.$error.minlength">The surname min character length is 2</small>
-				<small ng-show="name_form.snam.$error.maxlength">The surname max character length is 20</small>
-				<small ng-show="name_form.snam.$error.pattern">Use only A-Za-z characters</small>
+				<small ng-show="name_form.snam.$error.required">&#x2718 A surname is required</small>
+				<small ng-show="name_form.snam.$error.minlength">&#x2718 The surname min character length is 2</small>
+				<small ng-show="name_form.snam.$error.maxlength">&#x2718 The surname max character length is 20</small>
+				<small ng-show="name_form.snam.$error.pattern">&#x2718 Use only A-Za-z characters</small>
 			</div>
 		
 		<button class="button" type="submit" name="submit">UPDATE NAME</button>
@@ -31,13 +33,14 @@
 	<!-- CHANGE USERNAME FORM -->
 	<form class="forms left-align-form" name="username_form" novalidate ng-submit="editUsername()">
 				
-		<h2 class="bind-text">{{ successUnameChange }}</h2>
-		<input class="form-input" type="text" name="uname" placeholder="Update Username" required autocomplete="off" ng-model="edit.uname" ng-minlength=2 ng-maxlength=20 ng-pattern="/^[a-zA-Z]+$/">
+		<small class="success-messages" ng-show="successUnameChange">&#x2713 {{ successUnameChange }}</small>
+		<small class="error-messages" ng-show="sameUnameError">&#x2718 {{ sameUnameError }}</small>
+		<input class="form-input" type="text" name="uname" placeholder="{{user.username}}" required autocomplete="off" ng-model="edit.uname" ng-minlength=2 ng-maxlength=20 ng-pattern="/^[a-zA-Z]+$/">
 			<div class="error-messages" ng-show="username_form.uname.$dirty && username_form.uname.$invalid && username_form.submitted">
-				<small ng-show="username_form.uname.$error.required">A Username is required</small>
-				<small ng-show="username_form.uname.$error.minlength">The Username min character length is 2</small>
-				<small ng-show="username_form.uname.$error.maxlength">The Username max character length is 20</small>
-				<small ng-show="username_form.uname.$error.pattern">Use only A-Z a-z characters & 0-9 numbers.</small>
+				<small ng-show="username_form.uname.$error.required">&#x2718 A Username is required</small>
+				<small ng-show="username_form.uname.$error.minlength">&#x2718 The Username min character length is 2</small>
+				<small ng-show="username_form.uname.$error.maxlength">&#x2718 The Username max character length is 20</small>
+				<small ng-show="username_form.uname.$error.pattern">&#x2718 Use only A-Z a-z characters & 0-9 numbers.</small>
 			</div>
 		
 		<button class="button" type="submit" name="submit">UPDATE USERNAME</button>
@@ -47,13 +50,14 @@
 	<!-- CHANGE WEBSITE FORM -->
 	<form class="forms left-align-form" name="website_form" novalidate ng-submit="editWebsite()">
 				
-		<h2 class="bind-text">{{ successWebsiteChange }}</h2>
+		<small class="success-messages" ng-show="successWebsiteChange">&#x2713 {{ successWebsiteChange }}</small>
+		<small class="error-messages" ng-show="sameWebsiteError">&#x2718 {{ sameWebsiteError }}</small>
 		<input class="form-input" type="url" name="website" placeholder="{{user.web}}" required autocomplete="off" ng-model="edit.website" ng-minlength=2 ng-maxlength=200>
 			<div class="error-messages" ng-show="website_form.website.$dirty && website_form.website.$invalid && website_form.submitted">
-				<small ng-show="website_form.website.$error.required">A Website is required</small>
-				<small ng-show="website_form.website.$error.minlength">The Website min character length is 2</small>
-				<small ng-show="website_form.website.$error.maxlength">The Website max character length is 200</small>
-				<small ng-show="website_form.website.$error.url">That's not a URL</small>
+				<small ng-show="website_form.website.$error.required">&#x2718 A Website is required</small>
+				<small ng-show="website_form.website.$error.minlength">&#x2718 The Website min character length is 2</small>
+				<small ng-show="website_form.website.$error.maxlength">&#x2718 The Website max character length is 200</small>
+				<small ng-show="website_form.website.$error.url">&#x2718 That's not a URL</small>
 			</div>
 		
 		<button class="button" type="submit" name="submit">UPDATE WEBSITE</button>
