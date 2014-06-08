@@ -10,13 +10,10 @@ loginApp.factory('memberFactory', function($http) {
 	};
 });
 
-
-
 // === PROFILE FACTORY TO VIEW MEMBER PROFILE === //
 loginApp.factory('profileFactory', function(){
 	
 	// Empty object to store chosen member array of values
-
 	var chosen_memb = [];
 	
 	return {
@@ -25,8 +22,8 @@ loginApp.factory('profileFactory', function(){
 			return chosen_memb;
 		},
 		// setChosenMemb passes in then sets the value of the chosen_memb object 
-		setChosenMemb: function(member){
-			chosen_memb = member;
+		setChosenMemb: function(chose){
+			chosen_memb = chose;
 		}
 	};
 
@@ -58,7 +55,7 @@ loginApp.factory('loggedInFactory', function () {
 
 
 // === PROFILE FACTORY TO SELECT LOGGED IN MEMBER PROFILE === //
-loginApp.factory('UserFactory', function(){
+loginApp.factory('userFactory', function(){
 	
 	// Empty object to logged in user
 	var user = [];
@@ -71,6 +68,27 @@ loginApp.factory('UserFactory', function(){
 		// setUser passes in then sets the value of the user object 
 		setUser: function(member){
 			user = member;
+		}
+	};
+
+});
+
+
+
+// === PROFILE FACTORY TO SELECT LOGGED IN MEMBER PROFILE === //
+loginApp.factory('finalMembersFactory', function(){
+	
+	// Empty object to logged in user
+	var finalMembers = [];
+	
+	return {
+		// getUser returns the value of the user object
+		getFinalMembers: function(){
+			return finalMembers;
+		},
+		// setUser passes in then sets the value of the user object 
+		setFinalMembers: function(member){
+			finalMembers = member;
 		}
 	};
 

@@ -1,11 +1,45 @@
+.popup{
+	position: fixed;
+	top: 0; right: 0; bottom: 0; left: 0;
+	background-color: rgba(78,117,94,0.5);
+	z-index: 9999;
+}
+.popup-inner-container{
+	margin: 5% auto 12.5% auto;
+	width: 50%;
+}
+.close-popup{
+	margin-left: 100%;
+	font-size: 32px;
+	width: 64px;
+	height: 64px;
+	line-height: 64px;
+	color: #ffffff;
+	left: 100%;
+	top: -64px;
+}
+.close-popup:hover{
+	color: #1abc9c;
+	border: none;
+}
+.contact-forms{
+	padding: 16px;
+	border: 1px silver solid;
+}
+textarea {
+   resize: none;
+}
+
+
+
 /* === UNIVERSAL === */
 /* ================= */
 *{
 	margin: 0;
 	padding: 0;
-	font-family: 'Ubuntu', 'sans-serif';
+	font-family: 'Helvetica Neue', 'sans-serif';
 	font-size: 16px;
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 16px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -49,7 +83,6 @@ h1{
 	margin-bottom: 24px;
 	padding: 0 0 24px 0;
 	font-size: 48px;
-	font-weight: 100;
 	line-height: 48px;
 	text-transform: capitalize;
 	border-bottom: 1px silver solid;
@@ -158,20 +191,23 @@ section,
 
 /* === BACKGROUND COLOURS === */
 /* ========================== */
-.container, 
+.container,
+.close-popup:hover, 
+.contact-forms, 
 .main-nav-li-drop, 
 .add-like:hover,
 .likes{
 	background-color: #ffffff;
 }
-.button,
+.button:hover,
 .profile-left-container, 
 .add-like, 
 .right-container-boxes-inner{
 	background-color: #1abc9c;
 }
+.close-popup,
 .main-nav-li a:hover, 
-.button:hover,
+.button,
 .success-messages {
 	background-color: #1bd8b3;
 }
@@ -202,7 +238,7 @@ section,
 
 /* === TEXT ALIGN === */
 /* ================== */
-.center-text{
+.close-popup, .center-text{
 	text-align: center;
 }
 .main-nav-ul{
@@ -223,6 +259,7 @@ section,
 
 /* === POINTER === */
 /* =============== */
+.close-popup:hover,
 .button:hover, 
 .add-like:hover{
 	cursor: pointer;
@@ -290,6 +327,10 @@ section,
 /* === VALID FORM STYLES === */
 .form-input.ng-valid{
 	border: 1px green solid;
+}
+
+.form-input.ng-dirty > .forms{
+	background: black;
 }
 /* === SUBMIT BUTTON (ALL FORM SUBMIT BUTTONS) === */
 .button{
@@ -380,4 +421,68 @@ section,
 	height: 145px;
 	line-height: 145px;
 	border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+.loader{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 9999;
+	width: 100px;
+	margin: -50px 0 0 -50px;
+}
+/**
+ * Flexible Google-style progress indicator
+ */
+@-webkit-keyframes progress {
+	50% { border-width: .5em 0; }
+	to { border-width: .5em 0 0 0; }
+}
+@-webkit-keyframes rotate {
+	to { -webkit-transform: rotate(-270deg); }
+}
+@keyframes progress {
+	50% { border-width: .5em 0; }
+	to { border-width: .5em 0 0 0; }
+}
+@keyframes rotate {
+	to { transform: rotate(-270deg); }
+}
+
+.loading { /* Size of the progress indicator */
+	margin: 16px auto;
+	text-align: center;
+	padding: 16px;
+}
+
+.progress {
+	font-size: 100px; /* Size of the progress indicator */
+	width: 1em; 
+	height: 1em;
+	border: solid red;
+	border-top-color: #1bd8b3;
+	border-width: 0 0 .5em 0;
+	border-radius: 50%;
+	box-sizing: border-box;
+	margin: .1em auto;
+	background: linear-gradient(red 50%, #1bd8b3 50%);
+	background-origin: border-box;
+	-webkit-transform: rotate(90deg);
+	-webkit-animation: rotate 1s steps(4) infinite,
+	           progress .25s linear infinite alternate;
+	transform: rotate(90deg);
+	animation: rotate 1s steps(4) infinite,
+	           progress .25s linear infinite alternate;
+	text-indent: 99em;
+	overflow: hidden;
 }

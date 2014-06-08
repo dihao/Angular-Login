@@ -1,15 +1,31 @@
 @charset "UTF-8";
 
 @media all and (max-width: 480px){ 
+	.popup-inner-container{
+		width: 90%;
+	}
+	.close-popup{
+		margin-left: 0;
+		height: 48px;
+		width: 48px;
+		line-height: 48px;
+	}
 	h1{
 		font-size: 38px;
 	} 
 
-	.links-nav-ul{
+	.main-nav-ul{
 		text-align: center;
+		position: relative;
+	}
+	.main-nav-li a{
+		font: 12px;
 	}
 	.forms{
 		width: 100%;
+	}
+	.form-input{
+		padding: 10px;
 	}
 	
 	.password-link{
@@ -45,6 +61,12 @@
 
 
 @media all and (min-width: 481px) and (max-width: 768px){ 
+	.popup-inner-container{
+		width: 90%;
+	}
+	.close-popup{
+		margin-left: 0;
+	}
 	.forms{
 		width: 75%;
 	}
@@ -58,7 +80,7 @@
 	}
 	
 	.current-members-li{
-		width: 33.33%;
+		width: 25%;
 	}
 
 	.profile-left-container{
@@ -77,7 +99,10 @@
 
 
 
-@media all and (min-width:769px) and (max-width:1024px){
+@media all and (min-width:769px) and (max-width:1024px){ 
+	.popup-inner-container{
+		width: 75%;
+	}
 	.forms{
 		width: 65%;
 	}
@@ -99,10 +124,6 @@
 
 
 @media all and (min-width:1025px) and (max-width:1279px){
-	
-	.current-members-li{
-		width: 20%;
-	}
 }
 
 
