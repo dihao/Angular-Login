@@ -244,6 +244,9 @@ section,
 .main-nav-ul{
 	text-align: right;
 }
+.error-messages, .success-messages{
+	text-align: left;
+}
 
 
 
@@ -289,6 +292,7 @@ section,
 /* ============================= */
 .container{
 	max-width: 960px;
+	min-height: 450px;
 	border: 1px silver solid;
 }
 

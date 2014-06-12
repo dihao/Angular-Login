@@ -24,6 +24,14 @@ loginApp.config(function($routeProvider, $httpProvider) {
 		templateUrl: 'partials/password.html',
 		controller: 'PasswordController'
 	}).
+	when('/password-email', {
+		templateUrl: 'partials/password-email.html',
+		controller: 'PasswordEmailController'
+	}).
+	when('/password-reset', {
+		templateUrl: 'partials/password-reset.html',
+		controller: 'PasswordResetController'
+	}).
 	when('/profile', {
 		templateUrl: 'partials/profile.html',
 		controller: 'ProfileController'

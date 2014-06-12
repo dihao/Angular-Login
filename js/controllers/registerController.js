@@ -9,9 +9,9 @@ loginApp.controller('RegisterController', ['$scope', '$http', 'loggedInFactory',
 		if($scope.register_form.$valid){ // If the form is valid do the following.
 			$http({
 				method: 'POST',
-				url: 'https://localhost:3000/userAccount/accountTools/CrefateNewAccount',
+				url: 'https://localhost:3000/userAccount/accountTools/CreateNewAccount',
 				data: $.param($scope.register),
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded;  charset=utf-8;' }
+				withCredentials: true
 			}).success(function(data){
 				$scope.registrationSuccessMessage = "Your account was created successfully";
 			}).error(function(error, status){
