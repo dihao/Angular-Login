@@ -10,7 +10,7 @@ loginApp.controller('PasswordResetController', ['$scope', '$http', '$location', 
 			$http({
 				method: 'POST',
 				url: 'https://localhost:3000/userAccount/accountTools/accountRecovery/recoverAccountWithKey',
-				data: $.param($scope.recovery, $scope.email),
+				data: $.param($scope.recovery, $scope.email, $scope.password),
 				withCredentials: true
 			}).success(function(data){
 				$scope.resetSuccessMessage = "Your Password was reset successfully";
