@@ -6,12 +6,3 @@ $(document).ready(function(){
 	});
 });
 
-$(document).ready(function(){
-	
-	$(window).resize(function() {
-    	$('.container').height($(window).height() -32);
-	});
-
-	$(window).trigger('resize');
-});
-

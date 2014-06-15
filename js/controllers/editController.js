@@ -1,10 +1,10 @@
 'use strict';
 
-loginApp.controller('EditController', ['$scope', '$cookies', 'loggedInFactory', 'userFactory', function($scope, $cookies, loggedInFactory, userFactory){
+loginApp.controller('EditController', ['$scope', '$cookies', 'LoginStatusFactory', 'LoggedInUserFactory', function($scope, $cookies, LoginStatusFactory, LoggedInUserFactory){
 
-	$scope.showPage = loggedInFactory.getLoginStatus(); // If $scope.showPage = true the page is shown, if false it's not.
+	$scope.showPage = LoginStatusFactory.getLoginStatus(); // If $scope.showPage = true the page is shown, if false it's not.
 	
-	$scope.user = userFactory.getUser(); // Getting the logged in user and putting it in $scope.user		
+	$scope.user = LoggedInUserFactory.getUser(); // Getting the logged in user and putting it in $scope.user		
 	
 	// Function onChange for when an image file is added
 	$scope.filesChanged = function(elm){

@@ -1,23 +1,25 @@
 'use strict';
 
-loginApp.controller('PasswordResetController', ['$scope', '$http', function($scope, $http){
+loginApp.controller('PasswordResetController', ['$scope', '$http', '$location', function($scope, $http, $location){
+	
 	// Retrieve password function.
 	$scope.passwordResetSubmit = function(){
-		if($scope.reset_form.$valid){ // If the form is valid do the following.	
-			$scope.password.url = '';
+		if($scope.reset_form.$valid){ // If the form is valid do the following.
+			$scope.recovery = $location.$$search.recoveryKey;
+			$scope.email = $location.$$search.emailAddress;
 			$http({
 				method: 'POST',
-				url: 'https://localhost:3000/accountActions/newPassword',
-				data: $.param($scope.password),
+				url: 'https://localhost:3000/userAccount/accountTools/accountRecovery/recoverAccountWithKey',
+				data: $.param($scope.recovery, $scope.email),
 				withCredentials: true
 			}).success(function(data){
 				$scope.resetSuccessMessage = "Your Password was reset successfully";
-				console.log('success', $scope.password.url);
+				console.log('success', $scope.recovery, $scope.email);
 			}).error(function(error, status){
-				$scope.resetErrorMessage = "Looks like there was a: " + status + " error";
+				$scope.resetErrorMessage = "Oops. Looks like there was a: " + status + " error";
 				console.log('error');
 			});
-		}else{ // Else the form input is not valid. Set submitted to true to show error messages.
+		}else{ // Else the form input is not valid. Set submitted to true (shows error messages).
 			$scope.reset_form.submitted = true;
 		}
 	};

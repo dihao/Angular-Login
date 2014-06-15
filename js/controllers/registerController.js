@@ -1,8 +1,8 @@
 'use strict';
 
-loginApp.controller('RegisterController', ['$scope', '$http', 'loggedInFactory', function($scope, $http, loggedInFactory){
+loginApp.controller('RegisterController', ['$scope', '$http', 'LoginStatusFactory', function($scope, $http, LoginStatusFactory){
 	
-	$scope.showPage = loggedInFactory.getLoginStatus(); // If $scope.showPage = true the page is shown, if false it's not.
+	$scope.showPage = LoginStatusFactory.getLoginStatus(); // If $scope.showPage = true the page is shown, if false it's not.
 	
 	// Register form submit function
 	$scope.registerSubmit = function(){
@@ -14,6 +14,7 @@ loginApp.controller('RegisterController', ['$scope', '$http', 'loggedInFactory',
 				withCredentials: true
 			}).success(function(data){
 				$scope.registrationSuccessMessage = "Your account was created successfully";
+				$scope.register = {};
 			}).error(function(error, status){
 				$scope.registrationErrorMessage = "Looks like there was a: " + status + " error";
 			});

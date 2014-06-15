@@ -3,7 +3,7 @@
 var loginApp = angular.module('loginApp', ['ngResource', 'ngRoute', 'ngCookies']);
 
 // === MAIN CONTROLLER === //
-loginApp.controller('MainController', ['$scope', '$http', '$cookies', 'loggedInFactory', 'userFactory', 'ProfileFactory', function($scope, $http, $cookies, loggedInFactory, userFactory, ProfileFactory){
+loginApp.controller('MainController', ['$scope', '$http', '$cookies', 'LoginStatusFactory', 'LoggedInUserFactory', 'ProfileFactory', function($scope, $http, $cookies, LoginStatusFactory, LoggedInUserFactory, ProfileFactory){
 	
 	// Show popup variables.
 	$scope.showPopup = false; // If true the contact form will show.
@@ -50,29 +50,30 @@ loginApp.controller('MainController', ['$scope', '$http', '$cookies', 'loggedInF
 			url: 'https://localhost:3000/auth/logout',
 			withCredentials: true
 		}).success(function(data) {
-			loggedInFactory.setLoginStatus(false); // Setting the login status to false to log the user out.
-			$scope.flag = true;
-			console.log('success from Logout');
+			LoginStatusFactory.setLoginStatus(false); // Setting the login status to false to log the user out.
 		}).error(function(error, status) { 
 			console.log(error, status, 'error occured during logout.');
 		});
 	};
 
 	// Watches to get the login status of a member to decide what nav to show.
-	$scope.$watch(loggedInFactory.getLoginStatus, function() {
-		$scope.loggedIn = loggedInFactory.getLoginStatus(); // Getting the login status	
-		if (!$scope.loggedIn) $scope.loggedOut = true; // If $scope.loggedIn is false, user is logged out.
-		else $scope.loggedOut = false;// Else $scope.loggedOut is false, so $scope.loggedIn is true, user is logged in.
+	$scope.$watch(LoginStatusFactory.getLoginStatus, function() {
+		$scope.loggedIn = LoginStatusFactory.getLoginStatus();
+		if (!$scope.loggedIn){
+			$scope.loggedOut = true;
+		} else {
+			$scope.loggedOut = false;
+		}	
 	});
 
-	// Watches to get details for the logged in user to display in the drop down navigation.
-	$scope.$watch(userFactory.getUser, function() {
-		$scope.loggedInUser = userFactory.getUser(); // Getting the logged in user.
+	// Watches to get details for the logged in user. Displays name in the drop down navigation, and passes user to userProfile.
+	$scope.$watch(LoggedInUserFactory.getUser, function() {
+		$scope.loggedInUser = LoggedInUserFactory.getUser();
 	});
 
 	// $scope.userProfile is triggered by a ng-click from the drop down nav.
-	$scope.userProfile = function(){
-		ProfileFactory.setUserProfile($scope.loggedUser); // Setting the chosen member to the logged in member
+	$scope.userProfile = function(loggedInUser){
+		ProfileFactory.setUserProfile(loggedInUser); // Setting setUserProfile to the logged in user for the profile page.
 	};
 
 }]);

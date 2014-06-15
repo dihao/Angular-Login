@@ -1,10 +1,10 @@
 'use strict';
 
-loginApp.controller('SettingsController', ['$scope', 'loggedInFactory', 'userFactory', function($scope, loggedInFactory, userFactory){
+loginApp.controller('SettingsController', ['$scope', 'LoginStatusFactory', 'LoggedInUserFactory', function($scope, LoginStatusFactory, LoggedInUserFactory){
 
-	$scope.user = userFactory.getUser(); // Getting the logged in user and putting it in $scope.user
+	$scope.user = LoggedInUserFactory.getUser(); // Getting the logged in user and putting it in $scope.user
 	
-	$scope.showPage = loggedInFactory.getLoginStatus(); // If $scope.showPage = true the page is shown, if false it's not.
+	$scope.showPage = LoginStatusFactory.getLoginStatus(); // If $scope.showPage = true the page is shown, if false it's not.
 
 	// Update email address.
 	$scope.settingsEmail = function(){
