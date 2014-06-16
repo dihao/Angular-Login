@@ -14,10 +14,12 @@ loginApp.controller('PasswordEmailController', ['$scope', '$http', '$cookies', f
 				params: {emailAddress: $scope.password.emailAddress}
 			}).success(function(data){
 				$scope.emailAddressSuccessMessage = "We have sent you an email";
+				$scope.emailAddressErrorMessage = "";
 				$scope.password.emailAddress = {};
 				$scope.$emit('LOADED'); // Emit LOADING, sets $scope.loading to true. Shows loading indicator.
 			}).error(function(error, status){
 				$scope.emailAddressErrorMessage = "Looks like there was a: " + status + " error";
+				$scope.emailAddressSuccessMessage = "";
 				console.log(error, status, 'error');
 				$scope.$emit('LOADED'); // Emit LOADING, sets $scope.loading to true. Shows loading indicator.
 			});

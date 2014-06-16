@@ -16,9 +16,11 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', 'Login
 					data: $.param($scope.change.emailAddress)
 				}).success(function(data){
 					$scope.successEmailAddressChange = 'Your Email has been changed';
+					$scope.sameEmailAddressError = '';
 					console.log('success');
 				}).error(function(error, status){
 					$scope.sameEmailAddressError = 'That is the email you are currently using';
+					$scope.successEmailAddressChange = '';
 					console.log(error, status, 'error');
 				});
 			/*
@@ -43,9 +45,11 @@ if($scope.user.emailAddress != $scope.change.emailAddress){
 					data: $.param($scope.change.newPass, $scope.change.oldPass)
 				}).success(function(data){
 					$scope.successPassChange = 'Your Password has been changed';
+					$scope.confirmPasswordError = '';
 					console.log('success');
 				}).error(function(error, status){
 					$scope.confirmPasswordError = 'Your passwords do not match';
+					$scope.successPassChange = '';
 					console.log(error, status, 'error');
 				});
 			// If new password is not the same as old and the new and confirmed match change the users' password.

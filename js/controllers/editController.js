@@ -17,8 +17,10 @@ loginApp.controller('EditController', ['$scope', '$http', '$cookies', 'LoginStat
 		if($scope.user.imgURL != $scope.files[0].name){// If old image & new image are not the same change the image.
 			$scope.user.imgURL = $scope.files[0].name;
 			$scope.successImgChange = 'Your Image has been changed';
+			$scope.sameImgError = '';
 		}else{ // If the images are the same.
 			$scope.sameImgError = 'That is the Image you currently have set';
+			$scope.successImgChange = '';
 		};
 		console.log($scope.files);
 	};
@@ -33,10 +35,14 @@ loginApp.controller('EditController', ['$scope', '$http', '$cookies', 'LoginStat
 				}).success(function(data){
 					$scope.successFirstNameChange = 'Your First name has been changed';
 					$scope.successSurnameChange = 'Your Surname name has been changed';
+					$scope.sameFirstNameError = '';
+					$scope.sameSurnameError = '';
 					console.log('success');
 				}).error(function(error, status){
 					$scope.sameFirstNameError = 'That is the First name you currently use';
 					$scope.sameSurnameError = 'That is the Surname you currently use';
+					$scope.successFirstNameChange = '';
+					$scope.successSurnameChange = '';
 					console.log(error, status, 'error');
 				});
 			/*
@@ -67,9 +73,11 @@ if($scope.user.fname != $scope.edit.fnam){ // If old fname & new fname are not t
 					data: $.param($scope.edit.username)
 				}).success(function(data){
 					$scope.successUsernameChange = 'Your Username has been changed';
+					$scope.sameUsernameError = '';
 					console.log('success');
 				}).error(function(error, status){
 					$scope.sameUsernameError = 'That is the Username you currently use';
+					$scope.successUsernameChange = '';
 					console.log(error, status, 'error');
 				});
 			/*
@@ -94,9 +102,11 @@ if($scope.user.username != $scope.edit.username){ // If old uname & new uname ar
 					data: $.param($scope.edit.website)
 				}).success(function(data){
 					$scope.successWebsiteChange = 'Your Website has been changed';
+					$scope.sameWebsiteError = '';
 					console.log('success');
 				}).error(function(error, status){
 					$scope.sameWebsiteError = 'That is the Website you currently have set';
+					$scope.successWebsiteChange = '';
 					console.log(error, status, 'success');
 				});
 			/*
