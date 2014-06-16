@@ -8,12 +8,7 @@
 		<small class="error-messages" ng-show="sameImgError">&#x2718 {{ sameImgError }}</small>
 		<input class="form-input" type="file" name="img" required onchange="angular.element(this).scope().filesChanged(this)"/>
 		<button class="button" type="submit" ng-click="editImg()" name="submit">UPDATE IMAGE</button>
-	</form>
-	
-	<li ng-repeat="file in files">
-		<img ng-src="{{$scope.user.imgURL}}"/>
-	</li>
-	
+	</form>	
 	
 	<!-- CHANGE NAME FORM -->
 	<form class="forms left-align-form" name="name_form" novalidate ng-submit="editName()">

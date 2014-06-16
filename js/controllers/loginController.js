@@ -1,6 +1,6 @@
 'use strict';
 
-loginApp.controller('LoginController', ['$scope', '$http', '$cookies', '$timeout', '$location', 'LoginStatusFactory', 'LoggedInUserFactory', function($scope, $http, $cookies, $timeout, $location, LoginStatusFactory, LoggedInUserFactory){
+loginApp.controller('LoginController', ['$scope', '$http', '$cookies', '$timeout', '$location', 'LoginStatusFactory', 'LoggedInUserFactory', 'ProfileFactory', function($scope, $http, $cookies, $timeout, $location, LoginStatusFactory, LoggedInUserFactory, ProfileFactory){
 	
 	$scope.loginSubmit = function(){
 		if($scope.login_form.$valid){
@@ -13,10 +13,11 @@ loginApp.controller('LoginController', ['$scope', '$http', '$cookies', '$timeout
 				$scope.login = {};
 				$timeout(function() {
 					LoggedInUserFactory.setUser(angular.fromJson($cookies.userInfoCookie));
+					ProfileFactory.setUserProfile(angular.fromJson($cookies.userInfoCookie));
+					$location.path('/welcome');
 				}, 100);
-				$location.path('/welcome');
 			}).error(function(error, status){
-				$scope.loginErrorMessage = "Oops. Looks like there was a: " + status + " error";
+				$scope.loginErrorMessage = "Oops. " + error.error;
 				console.log(error, status, ' from Login');
 			});
 		}else{

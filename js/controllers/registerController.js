@@ -1,9 +1,7 @@
 'use strict';
 
 loginApp.controller('RegisterController', ['$scope', '$http', 'LoginStatusFactory', function($scope, $http, LoginStatusFactory){
-	
-	$scope.showPage = LoginStatusFactory.getLoginStatus(); // If $scope.showPage = true the page is shown, if false it's not.
-	
+
 	// Register form submit function
 	$scope.registerSubmit = function(){
 		if($scope.register_form.$valid){ // If the form is valid do the following.

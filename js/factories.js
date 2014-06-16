@@ -3,11 +3,11 @@
 // === FACTORY TO CHECK LOGIN STATUS === //
 loginApp.factory('LoginStatusFactory', function () { 
 	// Empty var to store true or false string
-	var logged = '';
+	var logged = false;
 	return {
 		// getLoginStatus returns the string or empty string of var logged
 		getLoginStatus: function() {
-			return (logged);
+			return logged;
 		},
 		// setLoginStatus set var logged to the value passed in.
 		setLoginStatus: function(value) {

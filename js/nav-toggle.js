@@ -1,8 +1,8 @@
 $(document).ready(function(){
-	$("#drop-nav").hide();
-	
+	$("#drop-nav").hide(200);
+
 	$("#toggle-nav").click(function(){
-		$("#drop-nav").toggle();
+		$("#drop-nav").toggle(200);
 	});
 });
 

@@ -1,13 +1,13 @@
 'use strict';
 
-loginApp.controller('ProfileController', ['$scope', 'ProfileFactory', 'LoginStatusFactory', function($scope, ProfileFactory, LoginStatusFactory){
-	
-	$scope.showPage = LoginStatusFactory.getLoginStatus(); // If $scope.showPage = true the page is shown, if false it's not.
+loginApp.controller('ProfileController', ['$scope', '$cookies', 'ProfileFactory', 'LoggedInUserFactory', function($scope, $cookies, ProfileFactory, LoggedInUserFactory){
+
+	var userCookie = $cookies.userInfoCookie;
+  	if(userCookie != undefined) { $scope.showPage = true; }
 	
 	// Watches to get the current chosen member when changed in the /welcome view.
 	$scope.$watch(ProfileFactory.getUserProfile, function () {
 		$scope.profile = ProfileFactory.getUserProfile(); // Setting $scope.chosen to the current chosen members
-			console.log($scope.profile);
 	});
 	
 	$scope.likes = Math.floor((Math.random() * 10) + 1);

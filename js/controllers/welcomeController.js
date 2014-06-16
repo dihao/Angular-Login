@@ -1,11 +1,10 @@
 'use strict';
 
 loginApp.controller('WelcomeController', ['$scope', '$http', '$cookies', 'LoggedInUserFactory', 'ProfileFactory', 'LoginStatusFactory', 'UsersFactory', function($scope, $http, $cookies, LoggedInUserFactory, ProfileFactory, LoginStatusFactory, UsersFactory){
-  
-	$scope.showPage = LoginStatusFactory.getLoginStatus(); // If $scope.showPage = true the page is shown, if false it's not.	
+
+	var userCookie = $cookies.userInfoCookie;
+  	if(userCookie != undefined) { $scope.showPage = true; }
 	
-	
-	// Loading indicators.
 	$scope.$on('LOADING', function(){$scope.loading = true}); // If $scope.loading is true/LOADING the loader will show.
 	$scope.$on('LOADED', function(){$scope.loading = false}); // If $scope.loading is false/LOADED the loader will show.
 	
@@ -16,13 +15,10 @@ loginApp.controller('WelcomeController', ['$scope', '$http', '$cookies', 'Logged
 	}).success(function(data) {
 	    UsersFactory.setUsers(data);
 	    $scope.members = UsersFactory.getUsers().userAccounts;
-	    console.log('success from Welcome');
 	    $scope.$emit('LOADED'); // Emit LOADED, sets $scope.loading to false. Hides loading indicator
 	}).error(function(error, status) { 
 	    console.log(error, status, 'error. Welcome.');
 	});
-	
-	
 	
 	// Function called when user clicks a member in the welcome view.
 	$scope.clickedMember = function(member){
