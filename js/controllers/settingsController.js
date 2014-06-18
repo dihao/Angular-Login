@@ -12,12 +12,15 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', 'Login
 		if($scope.email_form.$valid){
 			$http({
 				method: 'PATCH',
-				url: 'https://localhost:3000/userAccount/profileUtilities/updateDetails',
+				url: 'https://localhost:3000/userAccounts/profileUtilities/changeEmailAddress',
 				data: $.param($scope.change)
 			}).success(function(data){
 				$scope.successEmailAddressChange = 'Your Email has been changed';
 				$scope.sameEmailAddressError = '';
-				console.log('success');
+				$timeout(function() {
+					LoggedInUserFactory.setUser(angular.fromJson($cookies.userInfoCookie));
+					ProfileFactory.setUserProfile(angular.fromJson($cookies.userInfoCookie));
+				}, 100);
 			}).error(function(error, status){
 				$scope.sameEmailAddressError = 'That is the email you are currently using';
 				$scope.successEmailAddressChange = '';
