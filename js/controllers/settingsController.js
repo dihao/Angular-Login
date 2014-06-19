@@ -2,10 +2,10 @@
 
 loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$timeout', '$location', 'LoginStatusFactory', 'LoggedInUserFactory', 'ProfileFactory', function($scope, $http, $cookies, $timeout, $location, LoginStatusFactory, LoggedInUserFactory, ProfileFactory){
 
-	var userCookie = $cookies.userInfoCookie;
+	var userCookie = angular.fromJson($cookies.userInfoCookie);
   	if(userCookie != undefined) { $scope.showPage = true; }
 
-	$scope.user = LoggedInUserFactory.getUser(); // Getting the logged in user and putting it in $scope.user
+	$scope.user = userCookie; // Getting the logged in user and putting it in $scope.user
 
 	// Update email address.
 	$scope.settingsEmail = function(){

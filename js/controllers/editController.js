@@ -2,10 +2,10 @@
 
 loginApp.controller('EditController', ['$scope', '$http', '$cookies', '$timeout', 'LoginStatusFactory', 'LoggedInUserFactory', 'ProfileFactory', function($scope, $http, $cookies, $timeout, LoginStatusFactory, LoggedInUserFactory, ProfileFactory){
 
-	var userCookie = $cookies.userInfoCookie;
+	var userCookie = angular.fromJson($cookies.userInfoCookie);
   	if(userCookie != undefined) { $scope.showPage = true; }
 
-	$scope.user = LoggedInUserFactory.getUser(); // Getting the logged in user and putting it in $scope.user		
+	$scope.user = userCookie; // Getting the logged in user and putting it in $scope.user		
 
 	// Function onChange for when an image file is added
 	$scope.filesChanged = function(elm){
