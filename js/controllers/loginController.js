@@ -1,7 +1,7 @@
 'use strict';
 
 loginApp.controller('LoginController', ['$scope', '$http', '$cookies', '$timeout', '$location', 'LoginStatusFactory', 'LoggedInUserFactory', 'ProfileFactory', function($scope, $http, $cookies, $timeout, $location, LoginStatusFactory, LoggedInUserFactory, ProfileFactory){
-
+		
 	$scope.loginSubmit = function(){
 		if($scope.login_form.$valid){
 			$http({
@@ -12,7 +12,6 @@ loginApp.controller('LoginController', ['$scope', '$http', '$cookies', '$timeout
 				LoginStatusFactory.setLoginStatus(true);
 				$scope.login = {};
 				$timeout(function() {
-					LoggedInUserFactory.setUser(angular.fromJson($cookies.userInfoCookie));
 					ProfileFactory.setUserProfile(angular.fromJson($cookies.userInfoCookie));
 					$location.path('/welcome');
 				}, 100);

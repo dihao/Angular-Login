@@ -1,6 +1,6 @@
 'use strict';
 
-loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', 'LoginStatusFactory', 'LoggedInUserFactory', function($scope, $http, $cookies, LoginStatusFactory, LoggedInUserFactory){
+loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$timeout', '$location', 'LoginStatusFactory', 'LoggedInUserFactory', 'ProfileFactory', function($scope, $http, $cookies, $timeout, $location, LoginStatusFactory, LoggedInUserFactory, ProfileFactory){
 
 	var userCookie = $cookies.userInfoCookie;
   	if(userCookie != undefined) { $scope.showPage = true; }
@@ -9,6 +9,7 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', 'Login
 
 	// Update email address.
 	$scope.settingsEmail = function(){
+	
 		if($scope.email_form.$valid){
 			if($scope.user.emailAddress != $scope.change.emailAddress){
 				$http({
@@ -16,24 +17,28 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', 'Login
 					url: 'https://localhost:3000/userAccounts/profileUtilities/changeEmailAddress',
 					data: $.param($scope.change)
 				}).success(function(data){
-					$scope.successEmailAddressChange = 'Your Email has been changed';
-					$scope.sameEmailAddressError = '';
+					$scope.successEmailChange = 'Your Email has been changed';
+					$scope.sameEmailError = '';
+					$scope.user.emailAddress = $scope.change.emailAddress;
+					$scope.change.emailAddress = '';
 					$timeout(function() {
 						LoggedInUserFactory.setUser(angular.fromJson($cookies.userInfoCookie));
 						ProfileFactory.setUserProfile(angular.fromJson($cookies.userInfoCookie));
 					}, 100);
+					
 				}).error(function(error, status){
-					$scope.sameEmailAddressError = 'That is the email you are currently using';
-					$scope.successEmailAddressChange = '';
+					$scope.sameEmailError = 'That is the email you are currently using';
+					$scope.successEmailChange = '';
 					console.log(error, status, 'error');
 				});	
 			}else{
-				$scope.sameEmailAddressError = 'That is the email you are currently using';
-				$scope.successEmailAddressChange = '';
+				$scope.sameEmailError = 'That is the email you are currently using';
+				$scope.successEmailChange = '';
 			}
 		}else{
 			$scope.email_form.submitted = true;
 		}
+		
 	};
 	
 	
@@ -41,28 +46,44 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', 'Login
 	
 	// Update Password.
 	$scope.settingsPassword = function(){
+	
 		if($scope.password_form.$valid){
-  			$http({
-  				method: 'PATCH',			
-  				url: 'https://localhost:3000/userAccount/profileUtilities/changePassword',
-  				data: $.param($scope.change)
-  			}).success(function(data){
-	  			$scope.successPassChange = 'Your Password has been changed';
-	  			$scope.confirmPasswordError = '';
-	  			$scope.successDelete = 'Your Password has been changed';
-	  			console.log('success');
-  			}).error(function(error, status){
-  				$scope.confirmPasswordError = 'Your passwords do not match';
-  				$scope.successPassChange = '';
-  				console.log(error, status, 'error');
-  			});
+			$scope.passwordDuplicateError = "";
+			$scope.passwordConfirmError = "";
+				if($scope.change.oldPassword == ($scope.change.newPassword || $scope.confirmPassword)){
+					$scope.passwordDuplicateError = "You're already using that password";
+				}
+				else if($scope.change.newPassword != $scope.change.confirmPassword){
+					$scope.passwordConfirmError = 'Your desired password did not match';
+				}
+				else{
+					$http({
+		  				method: 'PATCH',			
+		  				url: 'https://localhost:3000/userAccount/profileUtilities/changePassword',
+		  				data: $.param($scope.change)
+		  			}).success(function(data){
+			  			$scope.successPassChange = 'Your Password has been changed';
+			  			$scope.confirmPasswordError = '';
+			  			$scope.change = {};
+			  			console.log('success');
+		  			}).error(function(error, status){
+		  				$scope.successPassChange = '';
+		  				console.log(error, status, 'error');
+		  			});	
+				}
+  			
   		}else{
   			$scope.password_form.submitted = true;
   		}
+  		
   	};
+  	
+  	
+  	
 
 	// Delete User.
 	$scope.settingsDelete = function(){
+	
 		if($scope.delete_form.$valid){
 			$http({
 				method: 'PATCH',
@@ -70,6 +91,8 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', 'Login
 				data: $.param($scope.change)
 			}).success(function(data){
 				$scope.successDelete = 'Your Password has been changed';
+				LoginStatusFactory.setLoginStatus(false);
+				$location.path('/login');
 				console.log('success');
 			}).error(function(error, status){
 				console.log(error, status, 'error');
@@ -77,6 +100,7 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', 'Login
 		}else{
 			$scope.delete_form.submitted = true;
 		}
+		
 	};
 
 }]);

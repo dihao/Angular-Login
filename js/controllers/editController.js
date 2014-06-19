@@ -64,6 +64,8 @@ loginApp.controller('EditController', ['$scope', '$http', '$cookies', '$timeout'
 				}).success(function(data){
 					$scope.successDescriptionChange = 'Your Description has been changed';
 					$scope.sameDescriptionError = '';
+					$scope.user.profileDescription = $scope.edit.profileDescription;
+					$scope.edit.profileDescription = '';
 					$timeout(function() {
 						LoggedInUserFactory.setUser(angular.fromJson($cookies.userInfoCookie));
 						ProfileFactory.setUserProfile(angular.fromJson($cookies.userInfoCookie));
