@@ -449,7 +449,7 @@ section,
 
 .loader{
 	position: absolute;
-	background-color: rgba(84,84,84,0.2);
+	background-color: rgba(78,117,94,0.5);
 	top: 0%;
 	right: 0;
 	bottom: 0;
@@ -497,12 +497,4 @@ section,
 	           progress .25s linear infinite alternate;
 	text-indent: 99em;
 	overflow: hidden;
-}
-
-.loading {
-	margin: 16px auto;
-	text-align: center;
-	position: absolute;
-	top: 55%;
-	left: 47.5%;
 }
