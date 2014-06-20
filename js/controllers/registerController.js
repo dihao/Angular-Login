@@ -1,6 +1,6 @@
 'use strict';
 
-loginApp.controller('RegisterController', ['$scope', '$http', 'LoginStatusFactory', function($scope, $http, LoginStatusFactory){
+loginApp.controller('RegisterController', ['$scope', '$http', function($scope, $http){
 
 	// Register form submit function
 	$scope.registerSubmit = function(){
@@ -32,10 +32,10 @@ loginApp.controller('RegisterController', ['$scope', '$http', 'LoginStatusFactor
 	};
 
 
-	// Function onChange for when a username is added
+	// Function onChange checking if the username is available
 	$scope.existingUsername = function(elm){
 	
-		$scope.username = elm.value; // $scope.files is set to the values of the element passed in. 
+		$scope.username = elm.value; // $scope.files is set to the value of the element passed in. 
 		$scope.$apply(); // Apply updates the scope when the file is added.
 		$http({
 			method: 'GET',
@@ -44,7 +44,7 @@ loginApp.controller('RegisterController', ['$scope', '$http', 'LoginStatusFactor
 			withCredentials: true
 		}).success(function(data){
 			if(data.result == true) {
-				$scope.userNameUnavailable = "Oops, Username is already taken up";
+				$scope.userNameUnavailable = "That username is not available";
 				console.log(data.result);
 			}else{
 				$scope.userNameUnavailable = "";
@@ -57,7 +57,7 @@ loginApp.controller('RegisterController', ['$scope', '$http', 'LoginStatusFactor
 	};
 
 
-	// Function onChange for when a email is added
+	// Function onChange checking if the email is available
 	$scope.existingEmailAddress = function(elm){
 	
 		$scope.emailAddress = elm.value; // $scope.emailAddress is set to the values of the element passed in. 
@@ -69,7 +69,7 @@ loginApp.controller('RegisterController', ['$scope', '$http', 'LoginStatusFactor
 			withCredentials: true
 		}).success(function(data){
 			if(data.result == true) {
-				$scope.emailAddressUnavailable = "Oops, Email is already taken up";
+				$scope.emailAddressUnavailable = "That email address is not available";
 				console.log(data.result);
 			}else{
 				$scope.emailAddressUnavailable = "";

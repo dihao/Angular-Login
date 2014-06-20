@@ -1,17 +1,18 @@
 'use strict';
 
 loginApp.controller('UserController', ['$scope', '$cookies', function($scope, $cookies){
-
+	
+	// Assigning the userInfoCookie to the variable userCookie.
 	var userCookie = angular.fromJson($cookies.userInfoCookie);
-  	if(userCookie != undefined) { $scope.showPage = true; };
-  	  		
-	$scope.user = angular.fromJson($cookies.userInfoCookie); // Setting $scope.chosen to the current chosen members		
-
-	$scope.likes = Math.floor((Math.random() * 10) + 1);
-	$scope.addLike = function(){
-	 
-		$scope.likes++;
-		
-	};
+	
+	// If the userInfoCookie is set, $scope.showPage is true (page can be shown).
+  	if(userCookie != undefined) {
+  	
+  		$scope.showPage = true;
+  	
+  	};
+  	
+  	// Setting $scope.user to the userInfoCookie stored inside the variable userCookie.
+  	$scope.user = userCookie;
 
 }]);

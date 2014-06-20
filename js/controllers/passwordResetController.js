@@ -1,11 +1,19 @@
 'use strict';
 
 loginApp.controller('PasswordResetController', ['$scope', '$http', '$cookies', '$location', function($scope, $http, $cookies, $location){
-
+	
+	// Assigning the userInfoCookie to the variable userCookie.
 	var userCookie = angular.fromJson($cookies.userInfoCookie);
-  	if(userCookie != undefined) { $scope.showPage = true; }
-
-	// Retrieve password function.
+	
+	// If the userInfoCookie is set, $scope.showPage is true (page can be shown).
+  	if(userCookie != undefined) {
+  	
+  		$scope.showPage = true;
+  	
+  	};
+  	
+  	
+  	// Retrieve password function.
 	$scope.passwordResetSubmit = function(){
 	
 		if($scope.reset_form.$valid){
@@ -15,8 +23,7 @@ loginApp.controller('PasswordResetController', ['$scope', '$http', '$cookies', '
 				$http({
 					method: 'POST',
 					url: 'https://localhost:3000/userAccount/accountTools/accountRecovery/recoverAccountWithKey',
-					data: $.param($scope.reset),
-					withCredentials: true
+					data: $.param($scope.reset)
 				}).success(function(data){
 					$scope.resetSuccessMessage = "Your Password was reset successfully";
 					$scope.resetErrorMessage = "";

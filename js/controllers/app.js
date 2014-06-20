@@ -6,7 +6,7 @@ var loginApp = angular.module('loginApp', ['ngResource', 'ngRoute', 'ngCookies']
 loginApp.controller('MainController', ['$scope', '$http', '$cookies', 'LoginStatusFactory', 'LoggedInUserFactory', 'ProfileFactory', function($scope, $http, $cookies, LoginStatusFactory, LoggedInUserFactory, ProfileFactory){
 
 	// Contact form variables
-	$scope.showPopup = false; // If true the contact form will show.
+	$scope.showContactForm = false; // If true the contact form will show.
 	$scope.submitted = false; // If true the error message will show.
 	$scope.contact = {}; // Holds the contact form text for the input fields
 
@@ -67,13 +67,17 @@ loginApp.controller('MainController', ['$scope', '$http', '$cookies', 'LoginStat
 		$scope.loggedInUser = angular.fromJson($cookies.userInfoCookie);	
 		
 	});
-
-	// $scope.userProfile is triggered by a ng-click from the drop down nav.
-	$scope.userProfile = function(loggedInUser){
 	
-		ProfileFactory.setUserProfile(loggedInUser); // Setting setUserProfile to the logged in user for the profile page.
+	// Setting LoginStatusFactory if userInfoCookie is set or not.
+	$scope.$watch(function() {
+	
+		if(angular.fromJson($cookies.userInfoCookie)){
+			LoginStatusFactory.setLoginStatus(true);
+		}else{
+			LoginStatusFactory.setLoginStatus(false);
+		}
 		
-	};
+	});
 	
 	// Watches to get the login status of a member to decide what nav to show.
 	$scope.$watch(LoginStatusFactory.getLoginStatus, function() {
@@ -87,19 +91,6 @@ loginApp.controller('MainController', ['$scope', '$http', '$cookies', 'LoginStat
 		
 	});
 	
-	// Setting LoginStatusFactory if userInfoCookie is set or not.
-	$scope.$watch(function() {
+	$scope.showDropNav = false;
 	
-		if(angular.fromJson($cookies.userInfoCookie)){
-			LoginStatusFactory.setLoginStatus(true);
-		}else{
-			LoginStatusFactory.setLoginStatus(false);
-		}
-		
-	});
-	
-	
-	
-	
-
 }]);

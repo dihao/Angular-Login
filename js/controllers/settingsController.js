@@ -1,11 +1,20 @@
 'use strict';
 
-loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$timeout', '$location', 'LoginStatusFactory', 'LoggedInUserFactory', 'ProfileFactory', function($scope, $http, $cookies, $timeout, $location, LoginStatusFactory, LoggedInUserFactory, ProfileFactory){
-
+loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$location', 'LoginStatusFactory', function($scope, $http, $cookies, $location, LoginStatusFactory){
+	
+	// Assigning the userInfoCookie to the variable userCookie.
 	var userCookie = angular.fromJson($cookies.userInfoCookie);
-  	if(userCookie != undefined) { $scope.showPage = true; }
+	
+	// If the userInfoCookie is set, $scope.showPage is true (page can be shown).
+  	if(userCookie != undefined) {
+  	
+  		$scope.showPage = true;
+  	
+  	};
+  	
+  	// Setting $scope.user to the userInfoCookie stored inside the variable userCookie.
+	$scope.user = userCookie;
 
-	$scope.user = userCookie; // Getting the logged in user and putting it in $scope.user
 
 	// Update email address.
 	$scope.settingsEmail = function(){
@@ -21,11 +30,6 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$time
 					$scope.sameEmailError = '';
 					$scope.user.emailAddress = $scope.change.emailAddress;
 					$scope.change.emailAddress = '';
-					$timeout(function() {
-						LoggedInUserFactory.setUser(angular.fromJson($cookies.userInfoCookie));
-						ProfileFactory.setUserProfile(angular.fromJson($cookies.userInfoCookie));
-					}, 100);
-					
 				}).error(function(error, status){
 					$scope.sameEmailError = 'That is the email you are currently using';
 					$scope.successEmailChange = '';

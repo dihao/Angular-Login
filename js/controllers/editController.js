@@ -1,11 +1,20 @@
 'use strict';
 
-loginApp.controller('EditController', ['$scope', '$http', '$cookies', '$timeout', 'LoginStatusFactory', 'LoggedInUserFactory', 'ProfileFactory', function($scope, $http, $cookies, $timeout, LoginStatusFactory, LoggedInUserFactory, ProfileFactory){
-
+loginApp.controller('EditController', ['$scope', '$http', '$cookies', function($scope, $http, $cookies){
+	
+	// Assigning the userInfoCookie to the variable userCookie.
 	var userCookie = angular.fromJson($cookies.userInfoCookie);
-  	if(userCookie != undefined) { $scope.showPage = true; }
-
-	$scope.user = userCookie; // Getting the logged in user and putting it in $scope.user		
+	
+	// If the userInfoCookie is set, $scope.showPage is true (page can be shown).
+  	if(userCookie != undefined) {
+  	
+  		$scope.showPage = true;
+  	
+  	};
+  	
+  	
+  	// Setting $scope.user to the userInfoCookie stored inside the variable userCookie.
+	$scope.user = userCookie;		
 
 	// Function onChange for when an image file is added
 	$scope.filesChanged = function(elm){
@@ -27,6 +36,7 @@ loginApp.controller('EditController', ['$scope', '$http', '$cookies', '$timeout'
 		};
 
 	};
+	
 
 	// Edit name.
 	$scope.editName = function(){
@@ -40,10 +50,6 @@ loginApp.controller('EditController', ['$scope', '$http', '$cookies', '$timeout'
 				}).success(function(data){
 					$scope.successNameChange = 'Your name has been changed';
 					$scope.sameNameError = '';
-					$timeout(function() {
-						LoggedInUserFactory.setUser(angular.fromJson($cookies.userInfoCookie));
-						ProfileFactory.setUserProfile(angular.fromJson($cookies.userInfoCookie));
-					}, 100);
 				}).error(function(error, status){
 					console.log(error, status, 'error');
 				});	
@@ -72,10 +78,6 @@ loginApp.controller('EditController', ['$scope', '$http', '$cookies', '$timeout'
 					$scope.sameDescriptionError = '';
 					$scope.user.profileDescription = $scope.edit.profileDescription;
 					$scope.edit.profileDescription = '';
-					$timeout(function() {
-						LoggedInUserFactory.setUser(angular.fromJson($cookies.userInfoCookie));
-						ProfileFactory.setUserProfile(angular.fromJson($cookies.userInfoCookie));
-					}, 100);
 				}).error(function(error, status){
 					console.log(error, status, 'error');
 				});
@@ -102,10 +104,6 @@ loginApp.controller('EditController', ['$scope', '$http', '$cookies', '$timeout'
 				}).success(function(data){
 					$scope.successWebsiteURLChange = 'Your Website has been changed';
 					$scope.sameWebsiteURLError = '';
-					$timeout(function() {
-						LoggedInUserFactory.setUser(angular.fromJson($cookies.userInfoCookie));
-						ProfileFactory.setUserProfile(angular.fromJson($cookies.userInfoCookie));
-					}, 100);
 				}).error(function(error, status){
 					console.log(error, status, 'error');
 				});

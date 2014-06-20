@@ -1,6 +1,6 @@
 'use strict';
 
-loginApp.controller('LoginController', ['$scope', '$http', '$cookies', '$timeout', '$location', 'ProfileFactory', function($scope, $http, $cookies, $timeout, $location, ProfileFactory){
+loginApp.controller('LoginController', ['$scope', '$http', '$cookies', '$timeout', '$location', function($scope, $http, $cookies, $timeout, $location){
 		
 	$scope.loginSubmit = function(){
 	
@@ -12,7 +12,6 @@ loginApp.controller('LoginController', ['$scope', '$http', '$cookies', '$timeout
 			}).success(function(data){
 				$scope.login = {};
 				$timeout(function() {
-					ProfileFactory.setUserProfile(angular.fromJson($cookies.userInfoCookie));
 					$location.path('/welcome');
 				}, 100);
 			}).error(function(error, status){

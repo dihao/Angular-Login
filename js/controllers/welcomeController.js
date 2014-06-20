@@ -1,10 +1,17 @@
 'use strict';
 
-loginApp.controller('WelcomeController', ['$scope', '$http', '$cookies', 'LoggedInUserFactory', 'ProfileFactory', 'LoginStatusFactory', 'UsersFactory', function($scope, $http, $cookies, LoggedInUserFactory, ProfileFactory, LoginStatusFactory, UsersFactory){
-
+loginApp.controller('WelcomeController', ['$scope', '$http', '$cookies', 'ProfileFactory', 'UsersFactory', function($scope, $http, $cookies, ProfileFactory, UsersFactory){
+	
+	// Assigning the userInfoCookie to the variable userCookie.
 	var userCookie = angular.fromJson($cookies.userInfoCookie);
-  	if(userCookie != undefined) { $scope.showPage = true; }
-
+	
+	// If the userInfoCookie is set, $scope.showPage is true (page can be shown).
+  	if(userCookie != undefined) {
+  	
+  		$scope.showPage = true;
+  	
+  	};
+  	
   	// Loading Indicators
 	$scope.$on('LOADING', function(){$scope.loading = true}); // If $scope.loading is true (LOADING) the loader will show.
 	$scope.$on('LOADED', function(){$scope.loading = false}); // If $scope.loading is false (LOADED) the loader will show.
