@@ -7,6 +7,7 @@ loginApp.controller('PasswordResetController', ['$scope', '$http', '$cookies', '
 
 	// Retrieve password function.
 	$scope.passwordResetSubmit = function(){
+	
 		if($scope.reset_form.$valid){
 			if($scope.reset.newPassword == $scope.reset.confirmPassword){
 				$scope.reset.recoveryKey = $location.$$search.recoveryKey;
@@ -31,6 +32,7 @@ loginApp.controller('PasswordResetController', ['$scope', '$http', '$cookies', '
 		}else{
 			$scope.reset_form.submitted = true;
 		}
+		
 	};
 
 }]);

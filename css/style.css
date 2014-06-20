@@ -46,6 +46,14 @@ textarea {
 	box-sizing: border-box;
 }
 
+::selection {
+	background: #1bd8b3;
+	color: #ffffff;
+}
+::-moz-selection {
+	background: #1bd8b3;
+	color: #ffffff;
+}
 
 
 

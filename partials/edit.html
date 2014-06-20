@@ -34,8 +34,8 @@
 	<!-- CHANGE PROFILE DESCRIPTION FORM -->
 	<form class="forms left-align-form" name="description_form" novalidate ng-submit="editDescription()">
 		<small class="success-messages" ng-show="successDescriptionChange && !sameDescriptionError">&#x2713 {{ successDescriptionChange }}</small>
-		<small class="error-messages" ng-show="sameDescriptionError && !successDescriptionChange">&#x2718 {{ successDescriptionChange }}</small>
-		<textarea class="form-input" type="text" name="description" rows="4" placeholder="{{user.profileDescription}}" required autocomplete="off" ng-model="edit.profileDescription" ng-minlength=2 ng-maxlength=140></textarea>
+		<small class="error-messages" ng-show="sameDescriptionError && !successDescriptionChange">&#x2718 {{ sameDescriptionError }}</small>
+		<textarea class="form-input" type="text" name="description" rows="8" placeholder="{{user.profileDescription}}" required autocomplete="off" ng-model="edit.profileDescription" ng-minlength=2 ng-maxlength=140/></textarea>
 			<div class="error-messages" ng-show="description_form.description.$dirty && description_form.description.$invalid && description_form.submitted">
 				<small ng-show="description_form.description.$error.required">&#x2718 A description is required</small>
 				<small ng-show="description_form.description.$error.minlength">&#x2718 The description min character length is 2</small>

@@ -4,6 +4,7 @@ loginApp.controller('RegisterController', ['$scope', '$http', 'LoginStatusFactor
 
 	// Register form submit function
 	$scope.registerSubmit = function(){
+	
 		if($scope.register_form.$valid){
 			if($scope.register.password == $scope.register.passwordConfirm){
 				$http({
@@ -27,11 +28,13 @@ loginApp.controller('RegisterController', ['$scope', '$http', 'LoginStatusFactor
 		}else{
 			$scope.register_form.submitted = true;
 		}
+		
 	};
 
 
 	// Function onChange for when a username is added
 	$scope.existingUsername = function(elm){
+	
 		$scope.username = elm.value; // $scope.files is set to the values of the element passed in. 
 		$scope.$apply(); // Apply updates the scope when the file is added.
 		$http({
@@ -50,11 +53,13 @@ loginApp.controller('RegisterController', ['$scope', '$http', 'LoginStatusFactor
 		}).error(function(error, status){
 			console.log(error, status);
 		});
+		
 	};
 
 
 	// Function onChange for when a email is added
 	$scope.existingEmailAddress = function(elm){
+	
 		$scope.emailAddress = elm.value; // $scope.emailAddress is set to the values of the element passed in. 
 		$scope.$apply(); // Apply updates the scope when the email is added.
 		$http({
@@ -73,6 +78,7 @@ loginApp.controller('RegisterController', ['$scope', '$http', 'LoginStatusFactor
 		}).error(function(error, status){
 			console.log(error, status);
 		});
+		
 	};
 
 }]);

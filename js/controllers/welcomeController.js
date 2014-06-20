@@ -5,8 +5,9 @@ loginApp.controller('WelcomeController', ['$scope', '$http', '$cookies', 'Logged
 	var userCookie = angular.fromJson($cookies.userInfoCookie);
   	if(userCookie != undefined) { $scope.showPage = true; }
 
-	$scope.$on('LOADING', function(){$scope.loading = true}); // If $scope.loading is true/LOADING the loader will show.
-	$scope.$on('LOADED', function(){$scope.loading = false}); // If $scope.loading is false/LOADED the loader will show.
+  	// Loading Indicators
+	$scope.$on('LOADING', function(){$scope.loading = true}); // If $scope.loading is true (LOADING) the loader will show.
+	$scope.$on('LOADED', function(){$scope.loading = false}); // If $scope.loading is false (LOADED) the loader will show.
 
 	$scope.$emit('LOADING'); // Emit LOADING, sets $scope.loading to true. Shows loading indicator.
 	$http({ 	
@@ -22,7 +23,9 @@ loginApp.controller('WelcomeController', ['$scope', '$http', '$cookies', 'Logged
 
 	// Function called when user clicks a member in the welcome view.
 	$scope.clickedMember = function(member){
+	
 		ProfileFactory.setUserProfile(member); // Passing the clicked member to the profile factory for the chosen member.
+		
 	};
 
 	$scope.sortField = 'username'; // ng-click sets a different string to $scope.sortField to filter the list with orderBy
