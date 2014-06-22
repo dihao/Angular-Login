@@ -10,6 +10,7 @@ loginApp.controller('PasswordEmailController', ['$scope', '$http', '$cookies', f
 		$scope.$on('LOADED', function(){$scope.loading = false}); // If $scope.loading is false (LOADED) the loader will show.
 
 		if($scope.email_form.$valid){ // If the form is valid
+		
 			$scope.$emit('LOADING');
 			$http({
 				method: 'GET',
@@ -26,8 +27,11 @@ loginApp.controller('PasswordEmailController', ['$scope', '$http', '$cookies', f
 				console.log(error, status, 'error');
 				$scope.$emit('LOADED'); // Emit LOADING, sets $scope.loading to true. Shows loading indicator.
 			});
+			
 		}else{ // Else the form is invalid
+		
 			$scope.email_form.submitted = true;
+			
 		}
 		
 	};

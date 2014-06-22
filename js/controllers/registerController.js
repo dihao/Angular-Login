@@ -30,6 +30,7 @@ loginApp.controller('RegisterController', ['$scope', '$http', function($scope, $
 		}
 		
 	};
+	
 
 
 	// Function onChange checking if the username is available
@@ -55,6 +56,7 @@ loginApp.controller('RegisterController', ['$scope', '$http', function($scope, $
 		});
 		
 	};
+
 
 
 	// Function onChange checking if the email is available

@@ -5,14 +5,12 @@ loginApp.controller('UserController', ['$scope', '$cookies', function($scope, $c
 	// Assigning the userInfoCookie to the variable userCookie.
 	var userCookie = angular.fromJson($cookies.userInfoCookie);
 	
-	// If the userInfoCookie is set, $scope.showPage is true (page can be shown).
+	// If the userInfoCookie is set. 
   	if(userCookie != undefined) {
-  	
-  		$scope.showPage = true;
-  	
+  		
+  		$scope.showPage = true; // $scope.showPage is true (page can be shown).
+  		$scope.user = userCookie; // $scope.user gets the content of userCookie.
+  		
   	};
-  	
-  	// Setting $scope.user to the userInfoCookie stored inside the variable userCookie.
-  	$scope.user = userCookie;
 
 }]);

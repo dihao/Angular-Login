@@ -5,15 +5,14 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$loca
 	// Assigning the userInfoCookie to the variable userCookie.
 	var userCookie = angular.fromJson($cookies.userInfoCookie);
 	
-	// If the userInfoCookie is set, $scope.showPage is true (page can be shown).
+	// If the userInfoCookie is set. 
   	if(userCookie != undefined) {
-  	
-  		$scope.showPage = true;
-  	
-  	};
-  	
-  	// Setting $scope.user to the userInfoCookie stored inside the variable userCookie.
-	$scope.user = userCookie;
+  		
+  		$scope.showPage = true; // $scope.showPage is true (page can be shown).
+  		$scope.user = userCookie; // $scope.user gets the content of userCookie.
+  		
+  	};	
+
 
 
 	// Update email address.
@@ -45,8 +44,7 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$loca
 		
 	};
 	
-	
-	
+		
 	
 	// Update Password.
 	$scope.settingsPassword = function(){
@@ -80,10 +78,9 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$loca
   			$scope.password_form.submitted = true;
   		}
   		
-  	};
+  	};  		
   	
-  	
-  	
+
 
 	// Delete User.
 	$scope.settingsDelete = function(){

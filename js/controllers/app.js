@@ -16,8 +16,9 @@ loginApp.controller('MainController', ['$scope', '$http', '$cookies', 'LoginStat
 
 	// Contact form submit function - Currently does not work on node.js server.
 	$scope.contactSubmit = function(){
-	
+
 		if($scope.contact_form.$valid){
+
 			$scope.$emit('LOADING');
 			$http({
 				method: 'POST',
@@ -32,23 +33,30 @@ loginApp.controller('MainController', ['$scope', '$http', '$cookies', 'LoginStat
 				$scope.$emit('LOADED');
 				$scope.contact.error = 'Looks like there was a ' + status + ' error';
 			});
+
 		}else{
+
 			$scope.contact_form.submitted = true;
+
 		};
-		
+
 	};
+
+
 
 	// Clearing contact form inputs.
 	$scope.clearInputs = function(){
-	
+
 		$scope.contact = '';
 		$scope.contact_form.submitted = false;
-		
+
 	};
+
+
 
 	// $scope.logOut is triggered by a ng-click from the drop down nav.
 	$scope.logOut = function(){
-	
+
 		$http({ 	
 			method: 'GET',
 			url: 'https://localhost:3000/auth/logout'
@@ -58,39 +66,57 @@ loginApp.controller('MainController', ['$scope', '$http', '$cookies', 'LoginStat
 		}).error(function(error, status) { 
 			console.log(error, status, 'error occured during logout.');
 		});
-		
+
 	};
+
+
 
 	// Setting the logged in user to the userInfoCookie.
 	$scope.$watch(function() {
-	
+
 		$scope.loggedInUser = angular.fromJson($cookies.userInfoCookie);	
-		
+
 	});
-	
+
+
+
 	// Setting LoginStatusFactory if userInfoCookie is set or not.
 	$scope.$watch(function() {
-	
+
 		if(angular.fromJson($cookies.userInfoCookie)){
+
 			LoginStatusFactory.setLoginStatus(true);
+
 		}else{
+
 			LoginStatusFactory.setLoginStatus(false);
+
 		}
-		
+
 	});
-	
+
+
+
 	// Watches to get the login status of a member to decide what nav to show.
 	$scope.$watch(LoginStatusFactory.getLoginStatus, function() {
-	
+
 		$scope.loggedIn = LoginStatusFactory.getLoginStatus();
+
 		if (!$scope.loggedIn){
+
 			$scope.loggedOut = true;
+
 		} else {
+
 			$scope.loggedOut = false;
+
 		}
-		
+
 	});
-	
+
+
+
+	// If true the drop down nav will be displayed.
 	$scope.showDropNav = false;
-	
+
 }]);

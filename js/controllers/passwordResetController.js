@@ -12,12 +12,15 @@ loginApp.controller('PasswordResetController', ['$scope', '$http', '$cookies', '
   	
   	};
   	
+
   	
   	// Retrieve password function.
 	$scope.passwordResetSubmit = function(){
 	
 		if($scope.reset_form.$valid){
+		
 			if($scope.reset.newPassword == $scope.reset.confirmPassword){
+			
 				$scope.reset.recoveryKey = $location.$$search.recoveryKey;
 				$scope.reset.emailAddress = $location.$$search.emailAddress;
 				$http({
@@ -33,11 +36,17 @@ loginApp.controller('PasswordResetController', ['$scope', '$http', '$cookies', '
 					$scope.resetSuccessMessage = "";
 					console.log(error, status, 'error');
 				});
+				
 			}else{
+			
 				$scope.passwordMatch = 'The password do not match';
+				
 			}
+			
 		}else{
+		
 			$scope.reset_form.submitted = true;
+			
 		}
 		
 	};
