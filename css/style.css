@@ -123,7 +123,6 @@ nav,
 /* === PADDINGS === */
 /* ================ */
 .container, 
-.main-nav, 
 .main-nav-li a,
 .forms,
 .form-input, 
@@ -154,7 +153,9 @@ section,
 .success-messages{
 	display: block;
 }
-.main-nav-li,  
+.main-nav-li, 
+.forms, 
+.button,
 .current-members-li, 
 .profile-left-container, 
 .profile-left-inner-row > div, 
@@ -179,8 +180,7 @@ section,
 }
 .button:hover,
 .profile-left-container, 
-.add-like, 
-.right-container-boxes-inner{
+.add-like{
 	background-color: #1abc9c;
 }
 .close-popup,
@@ -202,8 +202,6 @@ section,
 .button, 
 .add-like, 
 .profile-left-inner-row,
-.profile-right-inner-row,
-.profile-right-inner-row a,
 .error-messages,
 .success-messages{
 	color: #ffffff;
@@ -253,6 +251,7 @@ section,
 
 /* === VERTICAL ALIGN TOP === */
 /* ========================== */
+.forms,
 .current-members-li, 
 .profile-left-container, 
 .profile-right-container, 
@@ -278,6 +277,7 @@ section,
 
 
 .main-nav{
+	padding: 16px 0;
 }
 /* === DROP DOWN NAV (ALL PAGES) === */
 /* ================================= */
@@ -301,8 +301,7 @@ section,
 /* === FORMS (ALL FORMS) === */
 /* ========================= */
 .forms{
-	width: 50%;
-	border: 1px silver solid;
+	width: 49%;
 }
 /* === FORM INPUT FIELDS (ALL FORM INPUTS) === */
 .form-input{
@@ -316,7 +315,7 @@ section,
 /* === SUBMIT BUTTON (ALL FORM SUBMIT BUTTONS) === */
 .button{
 	border: none;	
-	width: 50%;
+	width: 49%;
 }
 /* === FORGOT PASSWORD LINK (LOGIN PAGE) === */
 .password-link{
@@ -390,10 +389,11 @@ section,
 /* === RIGHT BOXES INNER (PROFILE PAGE) === */
 .right-container-boxes-inner{
 	height: 100%;
+	border: 1px silver solid;
 }
 /* === RIGHT PROFILE INNER TEXT ROW (PROFILE PAGE) === */
 .profile-right-inner-row{
-	height: 33%;
+	height: 20%;
 }
 
 /* === RIGHT BOXES INNER LIKES CIRCLE (PROFILE PAGE) === */
@@ -457,15 +457,10 @@ textarea {
 .loader{
 	position: absolute;
 	background-color: rgba(78,117,94,0.5);
-	top: 0%;
-	right: 0;
-	bottom: 0;
-	left: 0%;
-	z-index: 9999;
+	top: 0%; right: 0; bottom: 0; left: 0%;
+	z-index: 999;
 }
-/**
- * Flexible Google-style progress indicator
- */
+
 @-webkit-keyframes progress {
 	50% { border-width: .5em 0; }
 	to { border-width: .5em 0 0 0; }
@@ -485,7 +480,7 @@ textarea {
 	position: absolute;
 	top: 40%;
 	left: 46%;
-	font-size: 100px; /* Size of the loader ball */
+	font-size: 100px; /* Size of the loader */
 	width: 1em; 
 	height: 1em;
 	border: solid red;
@@ -500,8 +495,4 @@ textarea {
 	-webkit-animation: rotate 1s steps(4) infinite,
 	           progress .25s linear infinite alternate;
 	transform: rotate(90deg);
-	animation: rotate 1s steps(4) infinite,
-	           progress .25s linear infinite alternate;
-	text-indent: 99em;
-	overflow: hidden;
 }

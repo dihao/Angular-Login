@@ -1,11 +1,10 @@
 'use strict';
 
-loginApp.controller('LoginController', ['$scope', '$http', '$cookies', '$timeout', '$location', function($scope, $http, $cookies, $timeout, $location){
+loginApp.controller('LoginController', ['$scope', '$http', '$timeout', '$location', function($scope, $http, $timeout, $location){
 		
 	$scope.loginSubmit = function(){
 	
 		if($scope.login_form.$valid){ // If the form is valid
-		
 			$http({
 				method: 'POST',
 				url: 'https://localhost:3000/auth/login',
@@ -19,11 +18,8 @@ loginApp.controller('LoginController', ['$scope', '$http', '$cookies', '$timeout
 				$scope.loginErrorMessage = error.error;
 				console.log(error, status, ' from Login');
 			});
-			
 		}else{ // Else the form is invalid
-		
 			$scope.login_form.submitted = true;
-			
 		}
 		
 	};

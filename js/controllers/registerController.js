@@ -6,12 +6,13 @@ loginApp.controller('RegisterController', ['$scope', '$http', function($scope, $
 	$scope.registerSubmit = function(){
 	
 		if($scope.register_form.$valid){
+		
 			if($scope.register.password == $scope.register.passwordConfirm){
+			
 				$http({
 					method: 'POST',
 					url: 'https://localhost:3000/userAccount/accountTools/createNewAccount',
-					data: $.param($scope.register),
-					withCredentials: true
+					data: $.param($scope.register)
 				}).success(function(data){
 					$scope.registrationSuccessMessage = "Your account was created successfully";
 					$scope.registrationErrorMessage = "";
@@ -21,12 +22,17 @@ loginApp.controller('RegisterController', ['$scope', '$http', function($scope, $
 					$scope.registrationSuccessMessage = "";
 					console.log(error, status);
 				});	
+				
 			}else{
+			
 				$scope.samePasswordError = 'Your password do not match';
+				
 			}
 			
 		}else{
+		
 			$scope.register_form.submitted = true;
+		
 		}
 		
 	};

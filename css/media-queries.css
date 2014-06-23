@@ -24,9 +24,6 @@
 	.forms{
 		width: 100%;
 	}
-	.form-input{
-		padding: 10px;
-	}
 	
 	.password-link{
 		margin-top: 16px;
@@ -63,6 +60,11 @@
 @media all and (min-width: 481px) and (max-width: 768px){ 
 	.popup-inner-container{
 		width: 90%;
+	}
+
+	.main-nav-ul{
+		text-align: center;
+		position: relative;
 	}
 	.close-popup{
 		margin-left: 0;
