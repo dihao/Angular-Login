@@ -4,6 +4,7 @@
 				
 	<!-- CHANGE IMAGE FORM -->
 	<form enctype="multipart/form-data" class="forms left-align-form" name="img_form" novalidate>
+		<img ng-src="{{ user.profileImage }}" class="image-margin-bottom" width="100"/>
 		<small class="success-messages" ng-show="successImgChange && !sameImgError">&#x2713 {{ successImgChange }}</small>
 		<small class="error-messages" ng-show="sameImgError && !successImgChange">&#x2718 {{ sameImgError }}</small>
 		

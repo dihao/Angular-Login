@@ -112,6 +112,7 @@ nav,
 .main-nav, 
 .form-input,
 .current-members-li a > img, 
+.image-margin-bottom,
 .error-messages,
 .success-messages{
 	margin-bottom: 24px;
@@ -145,6 +146,7 @@ nav,
 article,
 nav, 
 section,
+.forms, 
 .main-nav-li-drop li a,
 .button,
 .profile-left-inner-row, 
@@ -154,7 +156,6 @@ section,
 	display: block;
 }
 .main-nav-li, 
-.forms, 
 .button,
 .current-members-li, 
 .profile-left-container, 
@@ -192,7 +193,12 @@ section,
 .error-messages{
 	background-color: #f92828;
 }
-
+.twitter-blue{
+	background-color: #4099FF;
+}
+.facebook-blue{
+	background-color: #3B5998;
+}
 
 
 

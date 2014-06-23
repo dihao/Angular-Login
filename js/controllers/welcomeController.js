@@ -21,7 +21,7 @@ loginApp.controller('WelcomeController', ['$scope', '$http', '$cookies', 'Profil
 	$scope.$emit('LOADING'); // Emit LOADING, sets $scope.loading to true. Shows loading indicator.
 	$http({ 	
 	    method: 'GET',
-	    url: 'https://localhost:3000/accoutResources/users'
+	    url: 'https://localhost:3000/accountResources/users'
 	}).success(function(data) {
 	    UsersFactory.setUsers(data);
 	    $scope.members = UsersFactory.getUsers().userAccounts;
