@@ -155,8 +155,8 @@ section,
 .success-messages{
 	display: block;
 }
-.main-nav-li, 
-.button,
+.main-nav-li,
+.social-button,
 .current-members-li, 
 .profile-left-container, 
 .profile-left-inner-row > div, 
@@ -205,7 +205,8 @@ section,
 /* === FONT COLOURS === */
 /* ==================== */
 .main-nav-li a:hover, 
-.button, 
+.button,
+.social-button a, 
 .add-like, 
 .profile-left-inner-row,
 .error-messages,
