@@ -11,7 +11,14 @@ loginApp.controller('SocialController', ['$scope', '$http', function($scope, $ht
 				$scope.passwordDuplicateError = "You're password do not match";
 			}
 			
-			console.log('Build functin');
+			$http({ 	
+				method: 'GET',
+				url: 'https://localhost:3000/userAccount/accountTools/createNewAccountWithSocialMedia'
+			}).success(function(data) {
+				console.log(data);
+			}).error(function(error, status) { 
+				console.log(error, status, 'error. Welcome.');
+			});
 	
 		}else{
 	
