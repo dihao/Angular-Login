@@ -1,6 +1,6 @@
 'use strict';
 
-loginApp.controller('SocialController', ['$scope', '$http', function($scope, $http){
+loginApp.controller('SocialController', ['$scope', '$http', '$location', function($scope, $http, $location){
 	
 	
 	$scope.socialRegister = function(){
@@ -10,12 +10,19 @@ loginApp.controller('SocialController', ['$scope', '$http', function($scope, $ht
 			if($scope.social.newPassword != $scope.social.confirmPassword){
 				$scope.passwordDuplicateError = "You're password do not match";
 			}
+		
+			$scope.social.emailAddress = $location.$$search.emailAddress;
+			$scope.social.firstName = $location.$$search.firstName;
+			$scope.social.middleName = $location.$$search.middleName;
+			$scope.social.surname = $location.$$search.surname;
 			
 			$http({ 	
-				method: 'GET',
-				url: 'https://localhost:3000/userAccount/accountTools/createNewAccountWithSocialMedia'
+				method: 'POST',
+				url: 'https://localhost:3000/userAccount/accountTools/createNewAccountWithSocialMedia',
+				data: $.param($scope.social)
 			}).success(function(data) {
 				console.log(data);
+				$scope.successCreateAccount = "You account has been created";
 			}).error(function(error, status) { 
 				console.log(error, status, 'error. Welcome.');
 			});
