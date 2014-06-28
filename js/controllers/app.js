@@ -72,7 +72,7 @@ loginApp.controller('MainController', ['$scope', '$http', '$cookies', 'LoginStat
 
 
 	// Setting the logged in user to the userInfoCookie.
-	$scope.$watch(LoginStatusFactory.getLoginStatus,function() {
+	$scope.$watch(function() {
 
 		$scope.loggedInUser = angular.fromJson($cookies.userInfoCookie);
 

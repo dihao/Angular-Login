@@ -6,13 +6,13 @@
 	<form class="forms left-align-form" name="email_form" novalidate ng-submit="settingsEmail()">
 		<small class="success-messages" ng-show="successEmailChange && !sameEmailError">&#x2713 {{ successEmailChange }}</small>
 		<small class="error-messages" ng-show="sameEmailError && !successEmailChange">&#x2718 {{ sameEmailError }}</small>
-			
 		<div class="error-messages" ng-show="email_form.emailAddress.$dirty && email_form.emailAddress.$invalid && email_form.submitted">
 		    <small ng-show="email_form.emailAddress.$error.required">&#x2718 A Email is required</small>
 		    <small ng-show="email_form.emailAddress.$error.minlength">&#x2718 The Email min character length is 2</small>
 		    <small ng-show="email_form.emailAddress.$error.maxlength">&#x2718 The Email max character length is 30</small>
 		    <small ng-show="email_form.emailAddress.$error.email">&#x2718 Please enter a valid email</small>
 		</div>
+		
 		<input class="form-input" type="email" name="emailAddress" placeholder="{{user.emailAddress}}" required autocomplete="off" ng-model="change.emailAddress" ng-minlength=2 ng-maxlength=30>
 		
 		<button class="button" type="submit" name="submit">Update Email</button>
@@ -32,7 +32,6 @@
 		
 		<small class="error-messages" ng-show="confirmPasswordError">&#x2718 {{ confirmPasswordError }}</small>
 		<small class="error-messages" ng-show="passwordDuplicateError">&#x2718 {{ passwordDuplicateError }}</small>
-			
 		<div class="error-messages" ng-show="password_form.newPassword.$dirty && password_form.newPassword.$invalid && password_form.submitted">
 		    <small ng-show="password_form.newPassword.$error.required">&#x2718 A Password is required</small>
 		    <small ng-show="password_form.newPassword.$error.minlength">&#x2718 The Password min character length is 6</small>
@@ -54,17 +53,30 @@
 	</form>
 
 	<!-- DELETE ACCOUNT FORM -->
-	<form class="forms left-align-form" name="delete_form" novalidate ng-submit="settingsDelete()">
-		<small class="success-messages" ng-show="successDeleteAccount">&#x2713 {{ successDeleteAccount }}</small>
-		<div class="error-messages" ng-show="delete_form.deleteAccountPassword.$dirty && delete_form.deleteAccountPassword.$invalid && delete_form.submitted">
-		    <small ng-show="delete_form.deleteAccountPassword.$error.required">&#x2718 A Password is required</small>
-		    <small ng-show="delete_form.deleteAccountPassword.$error.minlength">&#x2718 The Password min character length is 2</small>
-		    <small ng-show="delete_form.deleteAccountPassword.$error.maxlength">&#x2718 The Password max character length is 20</small>
-		    <small ng-show="delete_form.deleteAccountPassword.$error.pattern">&#x2718 Use only A-Z/a-z & 0-9</small>
+	<section class="popup" ng-show="showDeleteForm">
+		<div id="pop" class="popup-inner-container">
+			<div class="close-popup" ng-click="showDeleteForm = !showDeleteForm; clearInputs();">X</div>
+			<form class="contact-forms whiteBG" name="delete_form" novalidate ng-submit="settingsDelete()">
+				<p>Danger! Are you sure about this?</p>
+				<small class="success-messages" ng-show="successDeleteAccount">&#x2713 {{ successDeleteAccount }}</small>
+				<div class="error-messages" ng-show="delete_form.deleteAccountPassword.$dirty && delete_form.deleteAccountPassword.$invalid && delete_form.submitted">
+				    <small ng-show="delete_form.deleteAccountPassword.$error.required">&#x2718 A Password is required</small>
+				    <small ng-show="delete_form.deleteAccountPassword.$error.minlength">&#x2718 The Password min character length is 2</small>
+				    <small ng-show="delete_form.deleteAccountPassword.$error.maxlength">&#x2718 The Password max character length is 20</small>
+				    <small ng-show="delete_form.deleteAccountPassword.$error.pattern">&#x2718 Use only A-Z/a-z & 0-9</small>
+				</div>
+				<input class="form-input" type="password" name="deleteAccountPassword" placeholder="Enter Password To Delete Account" required autocomplete="off" ng-model="change.deleteAccountPassword" ng-minlength=2 ng-maxlength=20 ng-pattern="/^[a-zA-Z0-9_]+$/">
+				
+				<button class="button button-full button-danger" type="submit" name="submit">Delete Account</button>
+			</form>
 		</div>
-		<input class="form-input" type="password" name="deleteAccountPassword" placeholder="Enter Password To Delete Account" required autocomplete="off" ng-model="change.deleteAccountPassword" ng-minlength=2 ng-maxlength=20 ng-pattern="/^[a-zA-Z0-9_]+$/">
-		
-		<button class="button" type="submit" name="submit">Delete Account</button>
-	</form>
+	</section>
+	
+	
+	
+	<!-- DELETE ACCOUNT FORM -->
+	<section class="forms left-align-form" novalidate>
+		<button class="button button-danger" type="submit" name="submit" ng-click="showDeleteForm = !showDeleteForm">Delete Your Account</button>
+	</section>
 
 </section>

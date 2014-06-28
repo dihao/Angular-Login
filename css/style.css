@@ -13,15 +13,6 @@
 	box-sizing: border-box;
 }
 
-::selection {
-	background: #2ecc71;
-	color: #ffffff;
-}
-::-moz-selection {
-	background: #2ecc71;
-	color: #ffffff;
-}
-
 
 
 /* === BODY === */
@@ -98,8 +89,7 @@ input[type=submit]{
 /* === MARGINS === */
 /* =============== */
 .container, 
-.forms, 
-.likes{
+.forms{
 	margin: 0 auto;
 }
 .main-nav-li-drop,
@@ -108,14 +98,16 @@ input[type=submit]{
 .profile-left-inner-row{ 
 	margin-top: 16px;
 }
+p,
 nav,
 .main-nav, 
+.forms,
 .form-input,
 .current-members-li a > img, 
 .image-margin-bottom,
 .error-messages,
 .success-messages{
-	margin-bottom: 24px;
+	margin-bottom: 16px;
 }
 
 
@@ -175,8 +167,7 @@ section,
 .close-popup:hover, 
 .contact-forms, 
 .main-nav-li-drop, 
-.add-like:hover,
-.likes{
+.add-like:hover{
 	background-color: #ffffff;
 }
 .button:hover, 
@@ -191,8 +182,11 @@ section,
 .success-messages {
 	background-color: #27ae60;
 }
-.error-messages{
+.error-messages, .button-danger{
 	background-color: #f92828;
+}
+.button-danger:hover{
+	background-color: #c82020;
 }
 .twitter-blueBG{
 	background-color: #4099FF;
@@ -295,6 +289,9 @@ section,
 .main-nav{
 	padding: 16px 0;
 }
+.main-nav li a{
+	border-radius: 6px;
+}
 /* === DROP DOWN NAV (ALL PAGES) === */
 /* ================================= */
 
@@ -303,6 +300,7 @@ section,
 	margin-left: -100px;
 	max-width: 175px;
 	border: 1px silver solid;
+	border-radius: 6px;
 }
 .main-nav-li-drop li{
 	padding: 0;
@@ -318,11 +316,14 @@ section,
 /* ========================= */
 .forms{
 	width: 49%;
+	border: 1px silver solid;
+	border-radius: 6px;
 }
 /* === FORM INPUT FIELDS (ALL FORM INPUTS) === */
 .form-input{
 	width: 100%;
 	border: 1px silver solid;
+	border-radius: 6px;
 }
 
 .form-input.ng-dirty > .forms{
@@ -330,8 +331,12 @@ section,
 }
 /* === SUBMIT BUTTON (ALL FORM SUBMIT BUTTONS) === */
 .button{
-	border: none;	
+	border: none;
+	border-radius: 6px;	
 	width: 49%;
+}
+.button-full{
+	width: 100%;
 }
 /* === FORGOT PASSWORD LINK (LOGIN PAGE) === */
 .password-link{
@@ -345,8 +350,7 @@ section,
 /* === ALIGN LEFT FORMS (EDIT, SETINGS PAGES) === */
 /* ============================================== */
 .left-align-form{
-	margin: 0;
-	border: none;	
+	margin-left: 0;
 }
 
 
@@ -374,17 +378,13 @@ section,
 .profile-left-container{
 	width: 30%;
 	min-height: 394px;
+	border-radius: 6px;
 }
 
 .profile-left-container > img{
 	max-width: 100%;
 	border: 2px solid #ffffff;
 	border-radius: 50%;
-}
-/* === LIKE BUTTON (PROFILE PAGE) === */
-.add-like{
-	border: 2px #ffffff solid;
-	width: 75%;
 }
 
 
@@ -406,18 +406,11 @@ section,
 .right-container-boxes-inner{
 	height: 100%;
 	border: 1px silver solid;
+	border-radius: 6px;
 }
 /* === RIGHT PROFILE INNER TEXT ROW (PROFILE PAGE) === */
 .profile-right-inner-row{
 	height: 20%;
-}
-
-/* === RIGHT BOXES INNER LIKES CIRCLE (PROFILE PAGE) === */
-.likes{
-	width: 145px;
-	height: 145px;
-	line-height: 145px;
-	border-radius: 50%;
 }
 
 
@@ -437,25 +430,25 @@ section,
 }
 .popup-inner-container{
 	margin: 5% auto 12.5% auto;
-	width: 50%;
+	width: 420px;
 }
 .close-popup{
-	margin-left: 100%;
 	font-size: 32px;
 	width: 64px;
 	height: 64px;
 	line-height: 64px;
 	color: #ffffff;
+	font-weight: 300;
 	left: 100%;
-	top: -64px;
+	border-radius: 6px 6px 0 0;
 }
 .close-popup:hover{
-	color: #1abc9c;
+	color: #27ae60;
 	border: none;
 }
 .contact-forms{
 	padding: 16px;
-	border: 1px silver solid;
+	border-radius: 0 6px 6px 6px;
 }
 textarea {
    resize: none;
@@ -511,4 +504,26 @@ textarea {
 	-webkit-animation: rotate 1s steps(4) infinite,
 	           progress .25s linear infinite alternate;
 	transform: rotate(90deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.whiteBG{
+	background-color: #ffffff;
 }

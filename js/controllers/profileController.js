@@ -20,14 +20,5 @@ loginApp.controller('ProfileController', ['$scope', '$cookies', 'ProfileFactory'
 		$scope.profile = ProfileFactory.getUserProfile(); // Setting $scope.chosen to the current chosen members
 		
 	});
-	
-	
-
-	$scope.likes = Math.floor((Math.random() * 10) + 1);
-	$scope.addLike = function(){
-	 
-		$scope.likes++;
-		
-	};
 
 }]);

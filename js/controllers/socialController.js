@@ -2,7 +2,7 @@
 
 loginApp.controller('SocialController', ['$scope', '$http', '$location', function($scope, $http, $location){
 	
-	
+	$scope.noAccountMessage = "You don't have an account, fill out our fast track form";
 	$scope.socialRegister = function(){
 	
 		if($scope.social_form.$valid){
@@ -23,6 +23,7 @@ loginApp.controller('SocialController', ['$scope', '$http', '$location', functio
 			}).success(function(data) {
 				console.log(data);
 				$scope.successCreateAccount = "You account has been created";
+				$scope.noAccountMessage = "";
 			}).error(function(error, status) { 
 				console.log(error, status, 'error. Welcome.');
 			});

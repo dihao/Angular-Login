@@ -4,7 +4,6 @@
 
 	<form class="forms" name="register_form" novalidate ng-submit="registerSubmit()">
 		<small class="error-messages" ng-show="registrationErrorMessage && !registrationSuccessMessage">&#x2718 {{registrationErrorMessage}}</small>
-		<small class="success-messages" ng-show="registrationSuccessMessage && !registrationErrorMessage">&#x2713 {{ registrationSuccessMessage }}</small>
 		<small class="error-messages" ng-show="userNameUnavailable && !userNameAvailable">&#x2718 {{ userNameUnavailable }}</small>
 		
 		<div class="error-messages" ng-show="register_form.username.$dirty && register_form.username.$invalid && register_form.submitted">

@@ -1,6 +1,37 @@
 'use strict';
 
-loginApp.controller('RegisterController', ['$scope', '$http', function($scope, $http){
+loginApp.controller('RegisterController', ['$scope', '$http', '$location', function($scope, $http, $location){
+
+
+	/*
+$scope.$watch(function() {
+
+		if($scope.yes){
+		console.log($scope.yes);
+
+			if($scope.yes){
+				$http({
+					method: 'POST',
+					url: 'https://localhost:3000/auth/login',
+					data: $.param($scope.register)
+				}).success(function(data){
+					$timeout(function() {
+						$location.path('/welcome');
+					}, 100);
+				}).error(function(error, status){
+					console.log(error, status, ' from Login');
+				});
+			}
+
+		}else{
+		console.log($scope.yes);
+
+		}
+
+	});
+*/
+
+
 
 	// Register form submit function
 	$scope.registerSubmit = function(){
@@ -14,9 +45,9 @@ loginApp.controller('RegisterController', ['$scope', '$http', function($scope, $
 					url: 'https://localhost:3000/userAccount/accountTools/createNewAccount',
 					data: $.param($scope.register)
 				}).success(function(data){
-					$scope.registrationSuccessMessage = "Your account was created successfully";
 					$scope.registrationErrorMessage = "";
 					$scope.register = {};
+					$scope.yes = true;
 				}).error(function(error, status){
 					$scope.registrationErrorMessage = "Looks like there was a: " + status + " error";
 					$scope.registrationSuccessMessage = "";

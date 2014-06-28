@@ -1,6 +1,6 @@
 'use strict';
 
-loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$location', 'LoginStatusFactory', function($scope, $http, $cookies, $location, LoginStatusFactory){
+loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$location', 'LoginStatusFactory', 'LoggedInUserFactory', function($scope, $http, $cookies, $location, LoginStatusFactory, LoggedInUserFactory){
 	
 	// Assigning the userInfoCookie to the variable userCookie.
 	var userCookie = angular.fromJson($cookies.userInfoCookie);
@@ -98,7 +98,8 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$loca
   		
   	};  		
   	
-
+  	
+  	$scope.showDeleteForm = false;
 
 	// Delete User.
 	$scope.settingsDelete = function(){
@@ -112,6 +113,8 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$loca
 			}).success(function(data){
 				$scope.successDelete = 'Your Password has been changed';
 				LoginStatusFactory.setLoginStatus(false);
+				LoggedInUserFactory.setUser([]);
+				$cookies.userInfoCookie = undefined;
 				$location.path('/login');
 			}).error(function(error, status){
 				console.log(error, status, 'error');

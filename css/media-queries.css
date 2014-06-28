@@ -4,12 +4,6 @@
 	.popup-inner-container{
 		width: 90%;
 	}
-	.close-popup{
-		margin-left: 0;
-		height: 48px;
-		width: 48px;
-		line-height: 48px;
-	}
 
 
 	h1{
@@ -62,10 +56,7 @@
 
 
 
-@media all and (min-width: 481px) and (max-width: 768px){ 
-	.popup-inner-container{
-		width: 90%;
-	}
+@media all and (min-width: 481px) and (max-width: 768px){
 	.close-popup{
 		margin-left: 0;
 	}
@@ -110,10 +101,7 @@
 
 
 
-@media all and (min-width:769px) and (max-width:1024px){ 
-	.popup-inner-container{
-		width: 75%;
-	}
+@media all and (min-width:769px) and (max-width:1024px){
 	.forms{
 		width: 65%;
 	}

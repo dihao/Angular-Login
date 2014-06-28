@@ -4,8 +4,10 @@
 	
 	<!-- SOCIAL SIGNUP FORM -->
 	<form class="forms" name="social_form" novalidate ng-submit="socialRegister()">
+	
+		<h3 class="error-messages" ng-show="noAccountMessage && !passwordDuplicateError && !successCreateAccount">&#x2718 {{ noAccountMessage }}</h3>
 		
-		<div class="success-messages" ng-show="passwordDuplicateError">&#x2713 {{ successCreateAccount }}</div>
+		<div class="success-messages" ng-show="successCreateAccount">&#x2713 {{ successCreateAccount }}</div>
 		<div class="error-messages" ng-show="social_form.username.$dirty && social_form.username.$invalid && social_form.submitted">
 		    <small ng-show="social_form.username.$error.required">&#x2718 A username is required</small>
 		    <small ng-show="social_form.username.$error.minlength">&#x2718 The username min character length is 2</small>
