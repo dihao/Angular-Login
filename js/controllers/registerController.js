@@ -48,11 +48,12 @@ $scope.$watch(function() {
 					$scope.registrationErrorMessage = "";
 					$scope.register = {};
 					$scope.yes = true;
+					console.log('hello');
 				}).error(function(error, status){
 					$scope.registrationErrorMessage = "Looks like there was a: " + status + " error";
 					$scope.registrationSuccessMessage = "";
 					console.log(error, status);
-				});	
+				});
 				
 			}else{
 			

@@ -51,6 +51,10 @@ loginApp.config(function($routeProvider, $httpProvider) {
 		templateUrl: 'partials/social-register.html',
 		controller: 'SocialController'
 	}).
+	when('/two-step', {
+		templateUrl: 'partials/two-step.html',
+		controller: 'TwoStepController'
+	}).
 	otherwise({
 		redirectTo: '/login'
 	});

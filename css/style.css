@@ -5,14 +5,13 @@
 	padding: 0;
 	font-family: 'Helvetica Neue', 'sans-serif';
 	font-size: 16px;
-	font-weight: 300;
+	font-weight: 400;
 	line-height: 16px;
-	letter-spacing: 1px;
+	letter-spacing: .05em;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
 
 
 /* === BODY === */
@@ -20,8 +19,6 @@
 body{
 	background-color: #f9faf7;
 }
-
-
 
 
 /* === A LINK TEXT === */
@@ -34,16 +31,12 @@ a:active {
     outline: none;
 }
 
-
-
 	
 /* === UL === */
 /* ========== */
 ul{
 	list-style-type: none;
 }
-
-
 
 
 /* === H TAGS === */
@@ -63,13 +56,12 @@ h2{
 h3{
 	font-size: 18px;
 	line-height: 18px;
+	margin-bottom: 8px;
 }
 h4{
 	font-size: 16px;
 	line-height: 16px;
 }
-
-
 
 
 /* === BORDER + OUTLINE === */
@@ -82,8 +74,6 @@ input[type=submit]{
 	border: none;
 	border-width: 0; 
 }
-
-
 
 
 /* === MARGINS === */
@@ -111,8 +101,6 @@ nav,
 }
 
 
-
-
 /* === PADDINGS === */
 /* ================ */
 .container, 
@@ -123,14 +111,11 @@ nav,
 .current-members-li, 
 .profile-left-container, 
 .profile-left-inner-row, 
-.add-like, 
 .right-container-boxes-inner, 
 .error-messages,
 .success-messages{
 	padding: 16px;
 }
-
-
 
 
 /* === DISPLAYS === */
@@ -159,26 +144,21 @@ section,
 }
 
 
-
-
 /* === BACKGROUND COLOURS === */
 /* ========================== */
-.container,
-.close-popup:hover, 
+.container, 
 .contact-forms, 
-.main-nav-li-drop, 
-.add-like:hover{
+.main-nav-li-drop{
 	background-color: #ffffff;
 }
-.button:hover, 
-.add-like{
+.button:hover,
+.close-popup:hover{
 	background-color: #2ecc71;
 }
 .close-popup,
 .main-nav-li a:hover,
 .social-button:hover,
 .button,
-.profile-left-container,
 .success-messages {
 	background-color: #27ae60;
 }
@@ -202,23 +182,15 @@ section,
 }
 
 
-
 /* === FONT COLOURS === */
 /* ==================== */
 .main-nav-li a:hover, 
 .button,
-.social-button, 
-.add-like, 
-.profile-left-inner-row,
+.social-button,
 .error-messages,
 .success-messages{
 	color: #ffffff;
 }
-.add-like:hover{
-	color: #1abc9c;
-}
-
-
 
 
 /* === TEXT ALIGN === */
@@ -233,9 +205,8 @@ section,
 }
 .error-messages, .success-messages{
 	text-align: left;
+	border-radius: 6px;
 }
-
-
 
 
 /* === TEXT UNDERLINE === */
@@ -246,17 +217,13 @@ section,
 }
 
 
-
-
 /* === POINTER === */
 /* =============== */
+.main-nav-li a,
 .close-popup:hover,
-.button:hover, 
-.add-like:hover{
+.button:hover{
 	cursor: pointer;
 }
-
-
 
 
 /* === VERTICAL ALIGN TOP === */
@@ -270,13 +237,6 @@ section,
 }
 
 
-
-
-
-
-
-
-
 /* === CONTAINER (ALL PAGES) === */
 /* ============================= */
 .container{
@@ -285,16 +245,23 @@ section,
 }
 
 
-
+/* === NAVIGATION === */
+/* ================== */
 .main-nav{
 	padding: 16px 0;
 }
 .main-nav li a{
+	padding: 16px;
 	border-radius: 6px;
 }
-/* === DROP DOWN NAV (ALL PAGES) === */
-/* ================================= */
 
+/* === FILTERS LI === */
+/* ================== */
+.main-nav-li a{
+	border-radius: 6px;
+}
+/* === DROP DOWN NAVIGATION (ALL PAGES) === */
+/* ======================================== */
 .main-nav-li-drop{
 	position: fixed;
 	margin-left: -100px;
@@ -308,8 +275,6 @@ section,
 .main-nav-li-drop li a{
 	width: 175px;
 }
-
-
 
 
 /* === FORMS (ALL FORMS) === */
@@ -329,6 +294,11 @@ section,
 .form-input.ng-dirty > .forms{
 	background: black;
 }
+/* === ALIGN LEFT FORMS (EDIT, SETINGS PAGES) === */
+/* ============================================== */
+.left-align-form{
+	margin-left: 0;
+}
 /* === SUBMIT BUTTON (ALL FORM SUBMIT BUTTONS) === */
 .button{
 	border: none;
@@ -343,17 +313,6 @@ section,
 	margin-top: -20px;
 	text-align: right;
 }
-
-
-
-
-/* === ALIGN LEFT FORMS (EDIT, SETINGS PAGES) === */
-/* ============================================== */
-.left-align-form{
-	margin-left: 0;
-}
-
-
 
 
 /* === LIST OF CURRENT MEMBERS (WELCOME PAGE) === */
@@ -371,13 +330,12 @@ section,
 }
 
 
-
-
 /* === LEFT PROFILE CONTAINER (PROFILE PAGE) === */
 /* ============================================= */
 .profile-left-container{
 	width: 30%;
 	min-height: 394px;
+	border: 1px silver solid;
 	border-radius: 6px;
 }
 
@@ -388,14 +346,11 @@ section,
 }
 
 
-
-
 /* === RIGHT PROFILE CONTAINER (PROFILE PAGE) === */
 /* ============================================== */
 .profile-right-container{
 	width: 70%;
 }
-
 /* === LEFT PROFILE CONTAINER (PROFILE PAGE) === */
 .right-container-boxes{
 	padding: 0 0 16px 16px;
@@ -412,12 +367,6 @@ section,
 .profile-right-inner-row{
 	height: 20%;
 }
-
-
-
-
-
-
 
 
 /* === CONTACT FORM === */
@@ -438,12 +387,10 @@ section,
 	height: 64px;
 	line-height: 64px;
 	color: #ffffff;
-	font-weight: 300;
 	left: 100%;
 	border-radius: 6px 6px 0 0;
 }
 .close-popup:hover{
-	color: #27ae60;
 	border: none;
 }
 .contact-forms{
@@ -453,12 +400,6 @@ section,
 textarea {
    resize: none;
 }
-
-
-
-
-
-
 
 
 /* === LOADING ICON === */
@@ -525,5 +466,39 @@ textarea {
 
 
 .whiteBG{
-	background-color: #ffffff;
+	background-color: #FFFFFF;
+}
+.greenBG{
+	background-color: #27ae60;
+}
+
+
+
+
+
+.whiteText{
+	color: #FFFFFF;
+}
+
+
+
+
+
+
+.danger-alert{
+	padding: 16px;
+	background-color: #f2c4c2;
+	color: #9c342e;
+}
+
+
+
+
+
+
+
+
+
+.border-radius{
+	border-radius: 6px;
 }

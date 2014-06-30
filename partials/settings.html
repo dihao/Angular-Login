@@ -57,8 +57,8 @@
 		<div id="pop" class="popup-inner-container">
 			<div class="close-popup" ng-click="showDeleteForm = !showDeleteForm; clearInputs();">X</div>
 			<form class="contact-forms whiteBG" name="delete_form" novalidate ng-submit="settingsDelete()">
-				<p>Danger! Are you sure about this?</p>
-				<small class="success-messages" ng-show="successDeleteAccount">&#x2713 {{ successDeleteAccount }}</small>
+				<p class="danger-alert">Are you sure about this? It can't be reversed</p>
+				<small class="error-messages" ng-show="errorDelete">&#x2718 {{ errorDelete }}</small>
 				<div class="error-messages" ng-show="delete_form.deleteAccountPassword.$dirty && delete_form.deleteAccountPassword.$invalid && delete_form.submitted">
 				    <small ng-show="delete_form.deleteAccountPassword.$error.required">&#x2718 A Password is required</small>
 				    <small ng-show="delete_form.deleteAccountPassword.$error.minlength">&#x2718 The Password min character length is 2</small>
@@ -74,7 +74,14 @@
 	
 	
 	
-	<!-- DELETE ACCOUNT FORM -->
+	<!-- TWO STEP AUTHENTICATION -->
+	<section class="forms left-align-form" novalidate>
+		<a ng-href="#/two-step" class="button">2 Step Authentication</a>
+	</section>
+	
+	
+	
+	<!-- DELETE ACCOUNT -->
 	<section class="forms left-align-form" novalidate>
 		<button class="button button-danger" type="submit" name="submit" ng-click="showDeleteForm = !showDeleteForm">Delete Your Account</button>
 	</section>

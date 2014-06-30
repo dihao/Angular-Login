@@ -12,11 +12,11 @@ loginApp.controller('LoginController', ['$scope', '$http', '$timeout', '$locatio
 			}).success(function(data){
 				$scope.login = {};
 				$timeout(function() {
-					$location.path('/welcome');
+					$location.path('/user');
 				}, 100);
 			}).error(function(error, status){
 				$scope.loginErrorMessage = error.error;
-				console.log(error, status, ' from Login');
+				console.log(error, status);
 			});
 		}else{ // Else the form is invalid
 			$scope.login_form.submitted = true;

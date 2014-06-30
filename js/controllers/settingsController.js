@@ -111,13 +111,13 @@ loginApp.controller('SettingsController', ['$scope', '$http', '$cookies', '$loca
 				url: 'https://localhost:3000/userAccount/profileUtilities/closeAccount',
 				data: $.param($scope.change)
 			}).success(function(data){
-				$scope.successDelete = 'Your Password has been changed';
 				LoginStatusFactory.setLoginStatus(false);
 				LoggedInUserFactory.setUser([]);
 				$cookies.userInfoCookie = undefined;
 				$location.path('/login');
 			}).error(function(error, status){
 				console.log(error, status, 'error');
+				$scope.errorDelete = error.error;
 			});
 			
 		}else{

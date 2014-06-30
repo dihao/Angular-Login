@@ -12,12 +12,15 @@
 	<div class="container" ng-app="loginApp">
 		<nav class="main-nav" ng-controller="MainController">
 			<ul class="main-nav-ul center-text">
-				<li class="main-nav-li"><a href="" ng-click="showContactForm = !showContactForm">Contact</a>
+				<li class="main-nav-li"><a ng-href="" ng-click="showContactForm = !showContactForm">Contact</a>
+					<!-- Contact form pop out -->
 					<div class="popup" ng-show="showContactForm">
 						<div id="pop" class="popup-inner-container">
+							<!-- Loader for contact form -->
 							<div class="loader" ng-show="loading">
 								<div class="progress"></div>
 							</div>
+							<!-- Close pop out button -->
 							<div class="close-popup" ng-click="showContactForm = !showContactForm; clearInputs();">X</div>
 							<form class="contact-forms" name="contact_form" novalidate ng-submit="contactSubmit()">
 								<small class="success-messages" ng-show="contact.success">&#x2713 {{ contact.success }}</small>
@@ -40,20 +43,20 @@
 										<small ng-show="contact_form.message.$error.minlength">&#x2718 The message min character length is 2</small>
 										<small ng-show="contact_form.message.$error.maxlength">&#x2718 The message max character length is 2000</small>
 									</div>
-								<button class="button" type="submit" name="submit">Send</button>
+								<button class="button button-full" type="submit" name="submit">Send</button>
 							</form>
 						</div>
-					</div>	
+					</div>	<!-- / Contact form pop out -->
 				</li
-				><li ng-show="loggedOut" class="main-nav-li"><a href="#/register">Sign up</a></li
-				><li ng-show="loggedOut" class="main-nav-li"><a href="#/login">Sign in</a></li
-				><li ng-show="loggedIn" class="main-nav-li"><a href="#/welcome">The Team</a></li
-				><li ng-show="loggedIn" class="main-nav-li" id="toggle-nav" ng-click="showDropNav = !showDropNav"><a href="">{{ loggedInUser.firstName }} &#x25BE</a>
+				><li ng-show="loggedOut" class="main-nav-li"><a ng-href="#/register">Sign up</a></li
+				><li ng-show="loggedOut" class="main-nav-li"><a ng-href="#/login">Sign in</a></li
+				><li ng-show="loggedIn" class="main-nav-li"><a ng-href="#/welcome">The Team</a></li
+				><li ng-show="loggedIn" class="main-nav-li" id="toggle-nav" ng-click="showDropNav = !showDropNav"><a ng-href="">{{ loggedInUser.firstName }} &#x25BE</a>
 					<ul id="drop-nav" class="main-nav-li-drop center-text" ng-show="showDropNav">
-						<li ng-show="loggedIn" class="main-nav-li"><a href="#/user">Your Profile</a></li>
-						<li ng-show="loggedIn" class="main-nav-li"><a href="#/settings">Account Settings</a></li>
-						<li ng-show="loggedIn" class="main-nav-li"><a href="#/edit">Edit Profile</a></li>
-						<li ng-show="loggedIn" ng-click="logOut()" class="main-nav-li"><a href="#/login">Logout</a></li>
+						<li ng-show="loggedIn" class="main-nav-li"><a ng-href="#/user">Your Profile</a></li>
+						<li ng-show="loggedIn" class="main-nav-li"><a ng-href="#/settings">Account Settings</a></li>
+						<li ng-show="loggedIn" class="main-nav-li"><a ng-href="#/edit">Edit Profile</a></li>
+						<li ng-show="loggedIn" ng-click="logOut()" class="main-nav-li"><a ng-href="#/login">Logout</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -79,6 +82,7 @@
 	<script src="js/controllers/socialController.js"></script>
 	<script src="js/controllers/passwordEmailController.js"></script>
 	<script src="js/controllers/passwordResetController.js"></script>
+	<script src="js/controllers/twoStepController.js"></script>
 	<script src="js/factories.js"></script>
 	<script src="js/config.js"></script>
 	<script src="js/libs/jquery-1.11.1.js"></script>
