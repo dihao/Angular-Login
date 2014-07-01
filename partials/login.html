@@ -1,9 +1,10 @@
 <section class="ng-view-section">
-
+	
+	<!-- PAGE HEADING TEXT -->
 	<h1 class="center-text">Login</h1>
 
 
-	<!-- SOCIAL LOGIN -->
+	<!-- SOCIAL LOGIN BUTTONS -->
 	<div class="forms">
 		<a ng-href="/auth/google" class="button social-button google-redBG">Login with Google+</a>
 		<a ng-href="/auth/facebook" class="button social-button facebook-blueBG">Login with Facebook</a>
@@ -11,26 +12,31 @@
 	
 
 
-	<!-- NATIVE LOGIN -->
+	<!-- MAIN LOGIN FORM -->
 	<form class="forms" name="login_form" novalidate ng-submit="loginSubmit()">
+		<!-- ERROR MESSAGES -->
 		<small class="error-messages" ng-show="loginErrorMessage">&#x2718 {{ loginErrorMessage }}</small>
-
 		<div class="error-messages" ng-show="login_form.username.$dirty && login_form.username.$invalid && login_form.submitted">
 		    <small ng-show="login_form.username.$error.required">&#x2718 A username is required</small>
 		    <small ng-show="login_form.username.$error.minlength">&#x2718 The username min character length is 2</small>
 		</div>
+		<!-- USERNAME OR EMAIL INPUT -->
 		<input class="form-input" type="text" name="username" placeholder="Username or Email" required autocomplete="off" ng-model="login.username" ng-minlength=2 ng-maxlength=20>
 
+		<!-- ERROR MESSAGES -->
 		<div class="error-messages" ng-show="login_form.password.$dirty && login_form.password.$invalid && login_form.submitted">
 		    <small ng-show="login_form.password.$error.required">&#x2718 A password is required</small>
 		    <small ng-show="login_form.password.$error.minlength">&#x2718 The password min character length is 2</small>
 		    <small ng-show="login_form.password.$error.maxlength">&#x2718 The password max character length is 20</small>
 		    <small ng-show="login_form.password.$error.pattern">&#x2718 Use only A-Z/a-z</small>
 		</div>
+		<!-- PASSWORD INPUT -->
 		<input class="form-input" type="password" name="password" placeholder="Password" required ng-model="login.password" ng-minlength=2 ng-maxlength=20 ng-pattern="/^[a-zA-Z0-9_]+$/">
 
+		<!-- FORM SUBMIT BUTTON -->
 		<button class="button" type="submit" name="submit">Login</button>
-
+		
+		<!-- FORGOT PASSWORD -->
 		<div class="password-link"><a href="#/password-email">Forgot Password</a></div>
 	</form>
 

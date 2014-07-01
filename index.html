@@ -9,10 +9,13 @@
 	<!--[if lt IE 9]><script src="js/libs/html5shiv.js"></script><![endif]-->
 </head>
 <body>
+	<!-- MAIN CONTAINER (MAIN MODULE/APP DECLARATION) -->
 	<div class="container" ng-app="loginApp">
+	
 		<nav class="main-nav" ng-controller="MainController">
 			<ul class="main-nav-ul center-text">
 				<li class="main-nav-li"><a ng-href="" ng-click="showContactForm = !showContactForm">Contact</a>
+				
 					<!-- Contact form pop out -->
 					<div class="popup" ng-show="showContactForm">
 						<div id="pop" class="popup-inner-container">
@@ -47,6 +50,7 @@
 							</form>
 						</div>
 					</div>	<!-- / Contact form pop out -->
+					
 				</li
 				><li ng-show="loggedOut" class="main-nav-li"><a ng-href="#/register">Sign up</a></li
 				><li ng-show="loggedOut" class="main-nav-li"><a ng-href="#/login">Sign in</a></li

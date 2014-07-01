@@ -1,21 +1,20 @@
 <section ng-show="showPage" class="ng-view-section">
-
-	<h1 class="center-text">2 Step Authentication</h1>
+	<!-- PAGE HEADING TEXT -->
+	<h1 class="center-text">2 Step Authentication</h1>	
 	
-	
-	
-		<!-- TWO STEP AUTHENTICATION MOBILE NUMBER -->
+		<!-- TWO STEP AUTHENTICATION MOBILE NUMBER FORM -->
 		<form class="forms" name="two_step_tel_form" novalidate ng-submit="twoStepAuthTel()" ng-show="!successTwoStepTel">
-			<!-- ERROR/SUCCESS MESSAGES -->
+			<!-- ERROR MESSAGES -->
 		    <div class="error-messages" ng-show="two_step_tel_form.twoStepTel.$dirty && two_step_tel_form.twoStepTel.$invalid && two_step_tel_form.submitted">
 		        <small ng-show="two_step_tel_form.twoStepTel.$error.required">&#x2718 A number is required</small>
+		        <small ng-show="two_step_tel_form.twoStepTel.$error.maxlength">&#x2718 The min length is 11</small>
 		        <small ng-show="two_step_tel_form.twoStepTel.$error.maxlength">&#x2718 The max length is 11</small>
 		        <small ng-show="two_step_tel_form.twoStepTel.$error.pattern">&#x2718 Use only 0-9</small>
 		    </div>
 		    <!-- STEP 1 LABEL -->
 			<h3>Step 1. Enter Your Mobile Number</h3>
 		    <!-- ENTER MOBILE NUMBER -->
-		    <input class="form-input" type="tel" name="twoStepTel" placeholder="Enter Your Mobile Number Here" required autocomplete="off" ng-model="auth.twoStepTel" ng-minlength=2 ng-maxlength=20 ng-pattern="/^[0-9_]+$/">
+		    <input class="form-input" type="tel" name="twoStepTel" placeholder="Enter Your Mobile Number Here" required autocomplete="off" ng-model="auth.twoStepTel" ng-minlength=11 ng-maxlength=11 ng-pattern="/^[0-9_]+$/">
 		    
 		    <button class="button button-full" type="submit" name="submit">Send Code</button>
 		</form>
@@ -24,11 +23,12 @@
 	
 	
 
-		<!-- TWO STEP AUTHENTICATION ENTER CODE -->
+		<!-- TWO STEP AUTHENTICATION ENTER CODE FORM -->
 		<form class="forms" name="enter_code_form" novalidate ng-submit="enterCode()" ng-show="successTwoStepTel">
-			<!-- ERROR/SUCCESS MESSAGES -->
+			<!-- SUCCESS MESSAGES -->
 		    <div class="success-messages" ng-show="successTwoStepTel && !successTwoStepCode">&#x2713 {{ successTwoStepTel }}</div>
 		    <div class="success-messages" ng-show="successTwoStepCode">&#x2713 {{ successTwoStepCode }}</div>
+		    <!-- ERROR MESSAGES -->
 		    <div class="error-messages" ng-show="enter_code_form.twoStepCode.$dirty && enter_code_form.twoStepCode.$invalid && enter_code_form.submitted">
 		        <small ng-show="enter_code_form.twoStepCode.$error.required">&#x2718 A number is required</small>
 		        <small ng-show="enter_code_form.twoStepCode.$error.minlength">&#x2718 The code length is 6</small>
